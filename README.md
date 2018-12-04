@@ -35,7 +35,7 @@ Transaction ID | 0d86[...]bc18 | A hash of the transaction that registered the a
 
 ## Alias Naming Restrictions
 
-While the protocol does not enforce any naming restrictions other than length, there are some considerations for implementors to consider. For example, non-spoken bytes such as tabs, spaces, carriage return, null for string termination or characters that can be used in database injection attacks might be best to disallow.
+While the protocol does not enforce any naming restrictions other than length, there are some considerations for implementors. For example, non-spoken bytes such as tabs, spaces, carriage return, null for string termination or characters that can be used in database injection attacks might be best to disallow.
 
 It is ultimately up to the application to determine what rules to apply given the langage and user base.
 
