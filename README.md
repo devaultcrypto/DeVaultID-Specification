@@ -35,7 +35,9 @@ Transaction ID | 0d86[...]bc18 | A hash of the transaction that registered the a
 
 ## Alias Naming Restrictions
 
-???
+While the protocol does not enforce any naming restrictions other than length, there are some considerations for implementors to consider. For example, non-spoken bytes such as tabs, spaces, carriage return, null for string termination or characters that can be used in database injection attacks might be best to disallow.
+
+It is ultimately up to the application to determine what rules to apply given the langage and user base.
 
 
 ## Registration
@@ -58,5 +60,5 @@ Payload | dynamic | Payload based on the version and action.
 
 **Name** | **Action Identifier** | **Structure** | **Notes**
 --- | --- | --- | ---
-Register | 0x01 | Payment Code (80), Alias Name (dynamic)
+Register | 0x01 | Payment Code (80), Alias Name (1~99) | Creates a new Cash Address using the Alias Name, blockheight and TXID.
 
