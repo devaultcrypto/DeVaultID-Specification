@@ -40,9 +40,6 @@ While the protocol does not enforce any naming restrictions other than length, t
 It is ultimately up to the application to determine what rules to apply given the langage and user base.
 
 
-## Registration
-## Lookup
-
 ## Protocol 
 
 A **Cash Address Transaction** consists of a protocol **Identifier**, **Version**, **Action** and **Payload**.
