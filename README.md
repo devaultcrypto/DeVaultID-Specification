@@ -59,3 +59,10 @@ Payload | dynamic | Payload based on the version and action.
 --- | --- | --- | ---
 Register | 0x01 | Payment Code (80), Alias Name (1~99) | Creates a new Cash Address using the Alias Name, blockheight and TXID.
 
+
+# References
+
+**Name** | **BIP** | **Link**
+--- | --- | ---
+Reusable Payment Codes | BIP-47 | https://github.com/OpenBitcoinPrivacyProject/bips/blob/master/bip-0047.mediawiki
+OP_RETURN | N/A | https://en.bitcoin.it/wiki/OP_RETURN
