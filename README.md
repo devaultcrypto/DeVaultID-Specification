@@ -34,3 +34,29 @@ Transaction ID | 0d86[...]bc18 | A hash of the transaction that registered the a
 
 
 ## Alias Naming Restrictions
+
+???
+
+
+## Registration
+## Lookup
+
+## Protocol 
+
+A **Cash Address Transaction** consists of a protocol **Identifier**, **Version**, **Action** and **Payload**.
+
+**Part** | **Length** | **Description**
+--- | --- | ---
+Identifier | 4 bytes | A static identifier for the Cash Address protocol: 0x01010101.
+Version | 1 byte | A version byte determines how to parse actions and payloads.
+Action | 1 byte | An action byte determines how to parse the payload.
+Payload | dynamic | Payload based on the version and action.
+
+## Actions
+
+### Version 1
+
+**Name** | **Action Identifier** | **Structure** | **Notes**
+--- | --- | --- | ---
+Register | 0x01 | Payment Code (80), Alias Name (dynamic)
+
