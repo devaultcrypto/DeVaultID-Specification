@@ -27,8 +27,8 @@ James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
 **Part** | **Example** | **Description**
 --- | --- | ---
 Alias | James | A human readable name, as an UTF-8 encoded string
-Blockheight | 574998 | A numerical blockheight reference the block that stored the register transaction
-Transaction ID | 0d86[...]bc18 | A hash of the transaction that registered the alias
+Blockheight | #574998 | A numerical blockheight reference the block that stored the register transaction
+Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the alias
 
 **Note:** *Unless the same name is registered twice in the same block, the transaction identifier is redundant and can be dropped. If a wallet detects that a transaction ID will be necessary, it may opt to re-create the alias in a later block to get a simpler identifier.*
 
