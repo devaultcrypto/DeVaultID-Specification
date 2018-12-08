@@ -38,7 +38,7 @@ Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the 
 
 ## Protocol 
 
-To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with an OP_RETURN output cointaining a protocol **Identifier**, one or more **Payment Data** and an **Account Name**.
+To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with an OP_RETURN output cointaining a **Protocol Identifier**, one or more **Payment Data** and an **Account Name**.
 
 ```
 OP_RETURN
@@ -47,7 +47,7 @@ OP_RETURN
     OP_PUSH <PAYMENT_DATA> [...OP_PUSH <PAYMENT_DATA>]
 ```
 
-### Protocol Prefix
+### Protocol Identifier
 
 This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md) and uses the 0x01010101 protocol identifier.
 
