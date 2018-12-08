@@ -17,7 +17,7 @@ When a user wants to, they can create a **Cash Account** by selecting a suitable
 When a user receives a **Cash Account** name (with or without identifier), their wallet looks up the **Payment Information** that corresponds to the alias.
 
 
-## Cash Address Names
+## Cash Account Names
 
 A full **Cash Account** consists of an **Name**, a **Blockheight** and a **Transaction ID**.
 
