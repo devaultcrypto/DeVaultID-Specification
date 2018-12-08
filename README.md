@@ -31,7 +31,10 @@ Name | James | A human readable name, as an UTF-8 encoded string
 Blockheight | #574998 | A numerical blockheight reference the block that stored the register transaction
 Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the alias
 
-**Note:** *Unless the same name is registered twice in the same block, the transaction identifier is redundant and can be dropped. If a wallet detects that a transaction ID will be necessary, it may opt to re-create the alias in a later block to get a simpler identifier.*
+* *When a name registration is unique in a given block, the TXID is redundant and not used in the account identifier.*
+* *When the same name is registered by multiple parties, only as much as is needed from the TXID is used in the account identifier.*
+* *When a wallet detects that a naming collision, it may opt to re-create the alias in a later block to get a simpler identifier.*
+* *The **:** separator between the blockheight and the TXID is optional.*
 
 
 ## Protocol 
