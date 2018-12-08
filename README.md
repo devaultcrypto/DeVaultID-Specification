@@ -56,11 +56,11 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 
 The initial version of this protocol supports three types of payment data: **Key Hashes**, **Script Hashes** and **Payment Codes**
 
-**Name** | **Identifier** | **Structure**
---- | --- | ---
-Key Hash | 0x01 | Key Hash (20)
-Script Hash | 0x02 | Script Hash (20)
-Payment Code | 0x03 | Payment Code (80)
+**Name** | **Identifier** | **Structure** | **Notes**
+--- | --- | --- | ---
+Key Hash | 0x01 | Key Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
+Script Hash | 0x02 | Script Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
+Payment Code | 0x03 | Payment Code (80) | Published payment codes [might undermine the privacy](https://github.com/bitcoin/bips/wiki/Comments:BIP-0047) of the users.
 
 
 ## Account Naming Restrictions
