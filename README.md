@@ -42,13 +42,16 @@ It is ultimately up to the application to determine what rules to apply given th
 
 ## Protocol 
 
-A **Cash Account Transaction** consists of a protocol **Identifier**, **Version**, **Action** and **Data**.
+To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with an OP_RETURN output cointaining a protocol **Identifier**, **Version**, **Action** and **Data**.
+
+```
+OP_RETURN OP_PUSH 01010101 OP_PUSH 01 OP_PUSH <PAYMENT_INFO> [...OP_PUSH <PAYMENT_INFO>] OP_PUSH <ALIAS>
+```
 
 **Part** | **Length** | **Description**
 --- | --- | ---
 Identifier | 4 bytes | Always 0x01010101.
-Version | 1 byte | How to parse action and data.
-Action | 1 byte | Which action to take.
+Version | 1 byte | How to parse the data.
 Data | dynamic | Data used in the action.
 
 ## Actions
