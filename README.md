@@ -34,7 +34,6 @@ Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the 
 * *When a name registration is unique in a given block, the TXID is redundant and not used in the account identifier.*
 * *When the same name is registered by multiple parties, only as much as is needed from the TXID is used in the account identifier.*
 * *When a wallet detects that a naming collision, it may opt to re-create the alias in a later block to get a simpler identifier.*
-* *The **:** separator between the blockheight and the TXID is optional.*
 
 
 ## Protocol 
