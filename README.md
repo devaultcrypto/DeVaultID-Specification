@@ -43,8 +43,8 @@ To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with
 ```
 OP_RETURN
     OP_PUSH 01010101
-    OP_PUSH <PAYMENT_DATA> [...OP_PUSH <PAYMENT_DATA>]
     OP_PUSH <ACCOUNT_NAME>
+    OP_PUSH <PAYMENT_DATA> [...OP_PUSH <PAYMENT_DATA>]
 ```
 
 ### Protocol Prefix
