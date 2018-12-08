@@ -53,9 +53,9 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 
 ### Payment Data Types
 
-The initial version of this protocol supports three types of payment data: **Key Hashes**, **Script Hashes** and **Payment Codes**
+**Payment Data** consists of a **Payment Identifier** and **Payment Data**. The initial version of this protocol supports three types of payment data: **Key Hashes**, **Script Hashes** and **Payment Codes**.
 
-**Name** | **Identifier** | **Structure** | **Notes**
+**Name** | **Payment Identifier** | **Payment Data** | **Notes**
 --- | --- | --- | ---
 Key Hash | 0x01 | Key Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
 Script Hash | 0x02 | Script Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
