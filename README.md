@@ -31,7 +31,7 @@ James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
 --- | --- | ---
 Name | James | A human readable name, as an UTF-8 encoded string
 Blockheight | #574998 | A numerical blockheight reference the block that stored the register transaction
-Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the alias
+Transaction ID | :0d86[...]bc18 | A Hex-encoded hash of the transaction that registered the alias
 
 #### Minimal Identifiers
 
@@ -98,6 +98,8 @@ While it is technically possible for a client to download the referenced block, 
 A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their shortest **Account Idenfitiers**.
 
 Such a service should allow for convenient lookup of **Cash Account** information, but must return all data needed to independently verify the information, such as the **Full Transaction**, **SPV-proof** and **Block Information**.
+
+An indexing service should validate the **Cash Account Identifier** according to ```/\w+#\d+(:[0-9a-fA-F]+)?;/``` to ensure that the lookup was not sent prematurely.
 
 If a user requests lookup for a **Minimal Identifier** that cannot be uniquely idenfitied, an indexing service must return all matching transactions and should clearly indicate that the lookup was unsuccessful.
 
