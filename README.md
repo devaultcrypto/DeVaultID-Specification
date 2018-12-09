@@ -95,13 +95,13 @@ While it is technically possible for a client to download the referenced block, 
 
 ### Indexing Services
 
-A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their shortest **Account Idenfitiers**.
+A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their shortest **Account Identifiers**.
 
 Such a service should allow for convenient lookup of **Cash Account** information, but must return all data needed to independently verify the information, such as the **Full Transaction**, **SPV-proof** and **Block Information**.
 
 An indexing service should validate the **Cash Account Identifier** according to ```/\w+#\d+(:[0-9a-fA-F]+)?;/``` to ensure that the lookup was not sent prematurely.
 
-If a user requests lookup for a **Minimal Identifier** that cannot be uniquely idenfitied, an indexing service must return all matching transactions and should clearly indicate that the lookup was unsuccessful.
+If a user requests lookup for a **Minimal Identifier** that cannot be uniquely identified, an indexing service must return all matching transactions and should clearly indicate that the lookup was **unsuccessful**.
 
 
 ### Known Attacks
