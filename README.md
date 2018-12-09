@@ -21,7 +21,7 @@ When a user receives a **Cash Account** name (with or without identifier), their
 
 ### Complete Idenfitiers
 
-A **Full Cash Account Identifier** consists of an **Name**, a **Blockheight** and a **Transaction ID**.
+A **Complete Cash Account Identifier** consists of an **Name**, a **Blockheight** and a **Transaction ID**.
 
 ```
 James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
