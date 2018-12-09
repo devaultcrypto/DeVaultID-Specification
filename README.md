@@ -1,3 +1,6 @@
+**This is a draft specification - please do not use or share until finalized.**
+
+
 # Abstract
 
 Cash Accounts is a naming system that can be used alongside regular bitcoin addresses and payment codes to simplify the process of sharing payment information.
