@@ -14,7 +14,7 @@ The Bitcoins address system based on hashing data creates complex and difficult 
 
 When a user wants to, they can create a **Cash Account** by selecting a suitable name and publish a transaction on-chain to aquire an identifier. Once the transaction is included in a block the user is informed of their name and identifier and can now share this information in a convenient manner with others.
 
-When a user receives a **Cash Account** name (with or without identifier), their wallet looks up the **Payment Information** that corresponds to the alias.
+When a user receives a **Cash Account Identifier** their wallet looks up the **Payment Information** that corresponds to the alias.
 
 
 ### Cash Account Identifiers
