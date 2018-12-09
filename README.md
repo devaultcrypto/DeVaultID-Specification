@@ -41,15 +41,33 @@ Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the 
 To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with an OP_RETURN output cointaining a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
 
 ```
-OP_RETURN
-    OP_PUSH <PROTOCOL>
-    OP_PUSH <ACCOUNT_NAME>
-    OP_PUSH <PAYMENT_DATA> [...OP_PUSH <PAYMENT_DATA>]
+OP_RETURN (0x6a)
+    OP_PUSH (0x04) <PROTOCOL> (0x01010101)
+    OP_PUSH (0x4c) <LENGTH> <ACCOUNT_NAME>
+    OP_PUSH (0x4c) <LENGTH> <PAYMENT_DATA> [...OP_PUSH (0x4c) <LENGTH> <PAYMENT_DATA>]
 ```
 
 ### Protocol Identifier
 
 This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md) and uses the 0x01010101 protocol identifier.
+
+## Account Name
+
+### IF LATIN ONLY
+
+The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it also need to match a strict **regular expression** of ```/\w+/``` (which is the same as ```/[a-zA-Z0-9_]+/```) to be valid.
+
+Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
+
+
+### IF LANGUAGE DEPENDENT
+
+The **Account Name** is an UTF-8 encoded string, with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**.
+
+While the protocol does not enforce any naming restrictions other than length, there are some considerations for implementors. For example, non-spoken bytes such as tabs, spaces, carriage return, null for string termination or characters that can be used in database injection attacks might be best to disallow.
+
+It is ultimately up to the application to determine what rules to apply given the langage and user base.
+
 
 ### Payment Data Types
 
@@ -60,13 +78,6 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 Key Hash | 0x01 | Key Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
 Script Hash | 0x02 | Script Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
 Payment Code | 0x03 | Payment Code (80) | Published payment codes [might undermine the privacy](https://github.com/bitcoin/bips/wiki/Comments:BIP-0047) of the users.
-
-
-## Account Naming Restrictions
-
-While the protocol does not enforce any naming restrictions other than length, there are some considerations for implementors. For example, non-spoken bytes such as tabs, spaces, carriage return, null for string termination or characters that can be used in database injection attacks might be best to disallow.
-
-It is ultimately up to the application to determine what rules to apply given the langage and user base.
 
 
 # References
