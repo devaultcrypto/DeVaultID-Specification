@@ -43,7 +43,7 @@ James#574998;
 
 #### Short Identifiers
 
-From time to time though, the same name will be registered more than once at the same blockheight, and a part of the **Transaction ID** will be needed. This additional part is only as long as required to resolve the **Name Collision** and is expected to stay within a few characters, creating a **Short Identifier**.
+From time to time though, the same name will be registered more than once at the same blockheight, and a part of the **Transaction ID** will be needed. This **Collision Avoidance Part** is only as long as required to resolve the **Name Collision** and is expected to stay within a few characters, creating a **Short Identifier**.
 
 ```
 James#574998:A;
@@ -101,7 +101,7 @@ Such a service should allow for convenient lookup of **Cash Account** informatio
 
 An indexing service should validate the **Cash Account Identifier** according to ```/\w+#\d+(:[0-9a-fA-F]+)?;/``` to ensure that the lookup was not sent prematurely.
 
-If a user requests lookup for a **Minimal Identifier** that cannot be uniquely identified, an indexing service must return all matching transactions and should clearly indicate that the lookup was **unsuccessful**.
+If a user requests lookup for a **Minimal Identifier** that cannot be uniquely identified, an indexing service must return all matching transactions and should clearly indicate that the lookup was **unsuccessful**. The client may then choose to either report an failed lookup, or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as account **Age**, **Collision Avoidance Part** and if the user has previously interacted with this account.
 
 
 ### Known Attacks
