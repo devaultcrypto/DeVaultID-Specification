@@ -117,6 +117,7 @@ To mitigate this attack **Alice** should poll random indexing services after cre
 
 **Name** | **BIP** | **Link**
 --- | --- | ---
+Bitcoin Script | N/A | https://en.bitcoin.it/wiki/Script
 Reusable Payment Codes | BIP-47 | https://github.com/OpenBitcoinPrivacyProject/bips/blob/master/bip-0047.mediawiki
 OP_RETURN | N/A | https://en.bitcoin.it/wiki/OP_RETURN
 OP_RETURN Guidelines | N/A | https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md
