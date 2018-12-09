@@ -70,16 +70,16 @@ OP_RETURN (0x6a)
 
 This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md) and uses the 0x01010101 protocol identifier.
 
-## Account Name
+### Account Name
 
-### IF LATIN ONLY
+#### IF LATIN ONLY
 
 The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it also need to match a strict **regular expression** of ```/\w+/``` (which is the same as ```/[a-zA-Z0-9_]+/```) to be valid.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
 
 
-### IF LANGUAGE DEPENDENT
+#### IF LANGUAGE DEPENDENT
 
 The **Account Name** is an UTF-8 encoded string, with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**.
 
