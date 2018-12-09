@@ -72,7 +72,7 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 
 ### Account Name
 
-The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it also need to match a strict **Regular Expression** of ```/\w+/``` (equivalent to ```/[a-zA-Z0-9_]+/```) to be valid.
+The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it is recommended that the name matches a strict **Regular Expression** of ```/\w+/``` to retain the human accessibility trait.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
 
@@ -99,7 +99,7 @@ A service can be made that continously scans the blockchain to create a database
 
 Such a service should allow for convenient lookup of **Cash Account** information, but must return all data needed to independently verify the information, such as the **Full Transaction**, **SPV-proof** and **Block Information**.
 
-An indexing service should validate the **Cash Account Identifier** according to ```/\w+#\d+(:[0-9a-fA-F]+)?;/``` to ensure that the lookup was not sent prematurely.
+An indexing service should validate the **Cash Account Identifier** according to ```/^.+#.+;$/``` to ensure that the lookup was not sent prematurely.
 
 If a user requests lookup for a **Minimal Identifier** that cannot be uniquely identified, an indexing service must return all matching transactions and should clearly indicate an **Incomplete** lookup. The client may then choose to either report an failed lookup, or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as account **Age**, **Collision Avoidance Part** and if the user has previously interacted with this account.
 
