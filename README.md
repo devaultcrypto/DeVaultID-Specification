@@ -17,9 +17,11 @@ When a user wants to, they can create a **Cash Account** by selecting a suitable
 When a user receives a **Cash Account** name (with or without identifier), their wallet looks up the **Payment Information** that corresponds to the alias.
 
 
-## Cash Account Names
+### Cash Account Identifiers
 
-A full **Cash Account** consists of an **Name**, a **Blockheight** and a **Transaction ID**.
+### Complete Idenfitiers
+
+A **Full Cash Account Identifier** consists of an **Name**, a **Blockheight** and a **Transaction ID**.
 
 ```
 James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
@@ -31,9 +33,26 @@ Name | James | A human readable name, as an UTF-8 encoded string
 Blockheight | #574998 | A numerical blockheight reference the block that stored the register transaction
 Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the alias
 
-* *When a name registration is unique in a given block, the TXID is redundant and not used in the account identifier.*
-* *When the same name is registered by multiple parties, only as much as is needed from the TXID is used in the account identifier.*
-* *When a wallet detects that a naming collision, it may opt to re-create the alias in a later block to get a simpler identifier.*
+#### Minimal Identifiers
+
+Most of the time it is expected that **Account Names** are uniquely registered in their block heights. This allows the shortest identifier to consist of only the **Name** and **Blockheight** to form a simple human-accessible **Minimal Cash Account Identifier**.
+
+```
+James#574998;
+```
+
+#### Short Identifiers
+
+From time to time though, the same name will be registered more than once at the same blockheight, and a part of the **Transaction ID** will be needed. This additional part is only as long as required to resolve the **Name Collision** and is expected to stay within a few characters, creating a **Short Cash Account Identifier**.
+
+```
+James#574998:A;
+James#574998:5;
+```
+
+* *When a wallet detects a naming collisions during registration, it may opt to re-create the account in a later block to get a simpler identifier.*
+
+
 
 
 ## Protocol 
