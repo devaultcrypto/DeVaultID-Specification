@@ -38,7 +38,7 @@ Transaction ID | :0d86[...]bc18 | A hash of the transaction that registered the 
 
 ## Protocol 
 
-To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with an OP_RETURN output cointaining a **Protocol Identifier**, one or more **Payment Data** and an **Account Name**.
+To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with an OP_RETURN output cointaining a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
 
 ```
 OP_RETURN
