@@ -113,6 +113,14 @@ Such a service should allow for convenient lookup of **Cash Account** informatio
 If a user requests lookup for a **Minimal Identifier** that cannot be uniquely idenfitied, an indexing service must return all matching transactions and should clearly indicate that the lookup was unsuccessful.
 
 
+### Known Attacks
+
+#### Index Collusion
+
+When **Alice** and **Bob** uses the same **Indexing Service** there is a risk that the **Indexing Service** could trick **Bob** into accepting an incorrect lookup. The attack starts when **Alice** tries to register an account name. The **Indexing Service** could detect the attempt in the mempool and create an intentional collision, but report to **Alice** that her name was created without any collisions. When **Bob** requests a lookup for **Alices** account, the **Indexing Service** could then provide its own account with a valid **SPV-proof** and transaction reference.
+
+To mitigate this attack **Alice** should poll random indexing services after creation, or download the full block to locally detect any collisions. If any honest service report a collision or she can locally detect a collision, **Alice** now knows that her chosen indexing service cannot be trusted.
+
 
 # References
 
