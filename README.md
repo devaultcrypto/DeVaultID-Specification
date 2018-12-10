@@ -75,7 +75,7 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 
 ### Account Name
 
-The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it is recommended that the name matches a strict **Regular Expression** of ```/\w+/``` to retain the human accessibility trait.
+The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it is recommended that the name matches a strict **Regular Expression** of ```/\w{1,99}/``` to retain the human accessibility trait.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
 
