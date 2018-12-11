@@ -101,7 +101,44 @@ While it is technically possible for a client to download the referenced block, 
 
 A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their shortest **Account Identifiers**.
 
-Such a service should allow for convenient lookup of **Cash Account** information, but must return all data needed to independently verify the information, such as the **Full Transaction**, **SPV-proof** and **Block Information**.
+Such a service should allow for convenient lookup of **Cash Account** information and must return all data needed to independently verify the information, such as the **Full Transaction**, **SPV Inclusion Proof** and **Block Information**.
+
+```
+{
+    "status": 1,
+    "name": "James",
+    "payment_data":
+    {
+        "key_hash": "",
+        "payment_code": ""
+    },
+    "transaction":
+    {
+        "id": "967d009ee103340d6762819ebf452107561423fe97b04fbf501594f231e212c4",
+        "data": ""
+    },
+    "inclusion_proof": 
+    {
+        "blockheight": 369863,
+        "position": 2917,
+        "merkle": 
+         [
+            "d844420b0f01398953b809b844bc9a5987f41d1373dab3180b6b4fe4de8633c4",
+            "3c1f63dae13e84aaba94d6ee12c7b48fa7b470eacfbe6e183ba008b7cbc3725c",
+            "0c5141f62f1ad58a6ebcee98868451ff392bc49bfb6daa5e4f492b6d175812cf",
+            "e414fd7ee39a83b7bd524f98ed09efa279a97fecbeeca68087de384eda71fc31",
+            "47fbf181989f2549d0d7a9fee2337ea60295059df0c0267cca173fd43b8e8596",
+            "bc441c955a6d9bc629e3a8e428aa7670d2bf631a9d11887bb4ad6b534fcf4817",
+            "1985800e12a150e6196ac07119278ea84ad296f1d8b2c88b2c85f61035f6a7cd",
+            "fc02dfab3083ca9185bce4e8b9357b5aacacce2172c969ac543da04eaa1c0c1d",
+            "6a36f10f34da6d66fdf75d4d97e0796106e7594409d354b8419a248231ab6935",
+            "cbc02af67b294fe7bad08a69f9435b520f8f89fa221583e0a84c8d9c9dc469a0",
+            "1043c7a6b9b4c42243e84a49a1f40476692b5d36d2f64dfb14409490ca3dfad2",
+            "fbbaec1ca9d29ba9ee6a89214428556827b4e5a254de59de5adabbabb2621f54"
+        ]
+    }
+}
+```
 
 An indexing service should validate the **Cash Account Identifier** according to ```/^.+#.+;$/``` to ensure that the lookup was not sent prematurely.
 
