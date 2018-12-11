@@ -105,11 +105,11 @@ Such a service should allow for convenient lookup of **Cash Account** informatio
 
 An indexing service should validate the **Cash Account Identifier** according to ```/^.+#.+;$/``` to ensure that the lookup was not sent prematurely.
 
-If a user requests lookup for a **Minimal Identifier** that cannot be uniquely identified, an indexing service must return all matching transactions and should clearly indicate an **Incomplete** lookup. The client may then choose to either report an failed lookup, or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as account **Age**, **Collision Avoidance Part** and if the user has previously interacted with this account.
+If a user requests lookup for a **Minimal Identifier** that cannot be uniquely identified, an indexing service must return all matching transactions and should clearly indicate an **Incomplete Lookup**. The client may then choose to either report an failed lookup, or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as account **Age**, **Collision Avoidance Part** and if the user has previously interacted with this account.
 
 ### Payment Type Preference
 
-When a sending client looks up a **Cash Account** and finds more than once compatible **Payment Data**, it should make a best-effort choice to maximize the **security** and then **privacy** of the recepient, regardless of which order the **Payment Data** was stored in.
+When a sending client looks up a **Cash Account** and finds more than one compatible **Payment Data**, it should make a best-effort choice to maximize the **security** and then **privacy** of the recepient, regardless of which order the **Payment Data** was stored in.
 
 The reasoning for this is that the data is immutable and software is not, so the senders wallet may be aware of security and privacy issues that the recipient has not yet become aware of.
 
