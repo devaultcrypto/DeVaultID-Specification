@@ -1,0 +1,1 @@
+The specfication has been moved to the SPECIFICATION.md file.
