@@ -168,6 +168,13 @@ Sharing the hash of the transaction allowed the other party to set up and store 
 
 ### Known Attacks
 
+#### Reactive Collisions
+
+When a registration transaction is broadcast, it is technically possible for an attacker to inspect the transaction for the account name and automatically create a collision for account in order to prevent it from aquiring a minimal identifier. The number of collisions can be configured based on the acceptable cost for the attacker and the desired expected length the attacker wants the user to have for their **Collision Avoidance Part**.
+
+The impact of the attack depends partly on the acceptable costs for the attacker, and partly on random chance, but is limited in what damage it can do (force longer identifiers).
+
+
 #### Index Collusion
 
 When **Alice** and **Bob** uses the same **Indexing Service** there is a risk that the **Indexing Service** could trick **Bob** into accepting an incorrect lookup. The attack starts when **Alice** tries to register an account name. The **Indexing Service** could detect the attempt in the mempool and create an intentional collision, but report to **Alice** that her name was created without any collisions. When **Bob** requests a lookup for **Alices** account, the **Indexing Service** could then provide its own account with a valid **SPV-proof** and transaction reference.
