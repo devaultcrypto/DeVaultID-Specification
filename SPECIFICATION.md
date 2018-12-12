@@ -24,7 +24,7 @@ When a user receives a **Cash Account Identifier** their wallet looks up the **P
 
 ### Complete Idenfitiers
 
-A **Complete Identifier** consists of an **Name**, a **Modified Blockheight** and a **Transaction ID**.
+A **Complete Identifier** consists of an **Name**, a **Modified Blockheight** and a **Collision Hash**.
 
 ```
 James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
@@ -34,7 +34,7 @@ James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
 --- | --- | ---
 Name | James | A human readable name, as an UTF-8 encoded string
 Modified Blockheight | #574998 | A numerical reference the block that stored the register transaction
-Transaction ID | :0d86[...]bc18 | A Hex-encoded hash of the transaction that registered the alias
+Collision Hash | :0d86[...]bc18 | A Hex-encoded hash of the blockhash+transactionhash
 
 #### Modified Blockheight
 
@@ -47,6 +47,11 @@ Digits | Range | Expected availability
 5 | 10000~99999 | ~2 years
 6 | 100000~999999 | ~19 years
 7 | 1000000~9999999 | ~190 years
+
+
+#### Collision Hash
+
+The collision has is calculated a the sha256 hash of the blockhash concatenated with the transaction hash.
 
 
 #### Minimal Identifiers
