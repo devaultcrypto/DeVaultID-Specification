@@ -42,14 +42,11 @@ The **Modified Blockheight** is an arbitrary value subtracted from the actual bl
 
 Digits | Range | Expected availability
 --- | --- | ---
-1 | 1~9 | ~1.5 hours
-2 | 10~99 | ~16.5 hours
 3 | 100~999 | ~7 days
 4 | 1000~9999 | ~2 months
 5 | 10000~99999 | ~2 years
 6 | 100000~999999 | ~19 years
 7 | 1000000~9999999 | ~190 years
-8 | 10000000~99999999 | ~1902 years
 
 
 #### Minimal Identifiers
