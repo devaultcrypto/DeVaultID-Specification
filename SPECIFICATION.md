@@ -53,7 +53,7 @@ James#574998:A;
 James#574998:5;
 ```
 
-* *When a wallet detects a naming collisions during registration, it may opt to re-create the account in a later block to get a simpler identifier.*
+* *When a wallet detects naming collisions during registration, it may opt to re-create the account in a later block to get a simpler identifier.*
 
 
 
