@@ -159,6 +159,12 @@ When a sending client looks up a **Cash Account** and finds more than one compat
 
 The reasoning for this is that the data is immutable and software is not, so the senders wallet may be aware of security and privacy issues that the recipient has not yet become aware of.
 
+### Pre-Confirmation
+
+For new wallet users, waiting for a block confirmation is unreasanable before using their wallet. During the pre-confirmation time period the wallet should either fall back on other means of tranfserring the payment information, or should digitally share the hash of the transaction so that the other party can look it up in the mempool.
+
+Sharing the hash of the transaction allowed the other party to set up and store the finalized **Cash Account Identifier** in a local registry once it confirms in a block.
+
 
 ### Known Attacks
 
