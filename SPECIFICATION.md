@@ -24,7 +24,7 @@ When a user receives a **Cash Account Identifier** their wallet looks up the **P
 
 ### Complete Idenfitiers
 
-A **Complete Identifier** consists of an **Name**, a **Blockheight** and a **Transaction ID**.
+A **Complete Identifier** consists of an **Name**, a **Modified Blockheight** and a **Transaction ID**.
 
 ```
 James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
@@ -33,8 +33,24 @@ James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
 **Part** | **Example** | **Description**
 --- | --- | ---
 Name | James | A human readable name, as an UTF-8 encoded string
-Blockheight | #574998 | A numerical blockheight reference the block that stored the register transaction
+Modified Blockheight | #574998 | A numerical reference the block that stored the register transaction
 Transaction ID | :0d86[...]bc18 | A Hex-encoded hash of the transaction that registered the alias
+
+#### Modified Blockheight
+
+The **Modified Blockheight** is an arbitrary value subtracted from the actual blockheight the transaction was registered in. This value will be determined when the specification is finalized and publicly released and will be chosen such that an account registered in the first block of 2019 will have a **Modified Blockheight** of 100.
+
+Digits | Range | Expected availability
+--- | --- | ---
+1 | 1~9 | ~1.5 hours
+2 | 10~99 | ~16.5 hours
+3 | 100~999 | ~7 days
+4 | 1000~9999 | ~2 months
+5 | 10000~99999 | ~2 years
+6 | 100000~999999 | ~19 years
+7 | 1000000~9999999 | ~190 years
+8 | 10000000~99999999 | ~1902 years
+
 
 #### Minimal Identifiers
 
