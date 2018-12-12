@@ -34,7 +34,7 @@ James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
 --- | --- | ---
 Name | James | A human readable name, as an UTF-8 encoded string
 Modified Blockheight | #574998 | A numerical reference the block that stored the register transaction
-Collision Hash | :0d86[...]bc18 | A Hex-encoded hash of the blockhash+transactionhash
+Collision Hash | :0d86[...]bc18 | A base10-encoded hash of the blockhash+transactionhash... (TODO: change example)
 
 #### Modified Blockheight
 
