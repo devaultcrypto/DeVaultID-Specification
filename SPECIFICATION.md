@@ -53,6 +53,10 @@ Digits | Range | Expected availability
 
 The **Collision Hash** is calculated by computing the SHA-256 hash of a string concatenation of the **Block Hash** and the **Transaction Hash**.
 
+```
+sha256(concat(<block hash>, <transaction hash>)) = '<collision hash>'
+```
+
 
 ### Minimal Identifiers
 
