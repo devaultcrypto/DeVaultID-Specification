@@ -17,28 +17,28 @@ The Bitcoin address system based on hashing data creates complex and difficult t
 
 When a user wants to, they can create a **Cash Account** by selecting a suitable name and publish a transaction on-chain to aquire an identifier. Once the transaction is included in a block the user is informed of their name and identifier and can now share this information in a convenient manner with others.
 
-When a user receives a **Cash Account Identifier** their wallet looks up the **Payment Information** that corresponds to the alias.
+When a user receives a **Cash Account Identifier** their wallet looks up the **Payment Information** that corresponds to the account.
 
 
 ### Cash Account Identifiers
 
 ### Complete Idenfitiers
 
-A **Complete Identifier** consists of an **Name**, a **Modified Blockheight** and a **Collision Hash**.
+A **Complete Identifier** consists of an **Account Name**, a **Account Number** and a **Collision Hash**.
 
 ```
-James#574998:0d8648cbb1725cc5bbe59c47fa4f6268fe8879ad6fe2b094a3e934e80f3abc18;
+James#4137.6117326955556230485904558655836903590722755773537808380229840327895552801816;
 ```
 
 **Part** | **Example** | **Description**
 --- | --- | ---
-Name | James | A human readable name, as an UTF-8 encoded string
-Modified Blockheight | #574998 | A numerical reference the block that stored the register transaction
-Collision Hash | :0d86[...]bc18 | A base10-encoded hash of the blockhash+transactionhash... (TODO: change example)
+Account Name | James | Human readable name, as an UTF-8 encoded string
+Account Number | #4137 | Number separating accounts with the same name in different blocks.
+Collision Hash | .6117[...]1816 | Number separating accounts with the same name in the same block.
 
-#### Modified Blockheight
+#### Account Number
 
-The **Modified Blockheight** is an arbitrary value subtracted from the actual blockheight the transaction was registered in. This value will be determined when the specification is finalized and publicly released and will be chosen such that an account registered in the first block of 2019 will have a **Modified Blockheight** of 100.
+The **Account Number** calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and substracting an arbitrary value. This value will be determined when the specification is finalized and publicly released and will be chosen such that an account registered in the first block of 2019 will have a **Account Number** of 100.
 
 Digits | Range | Expected availability
 --- | --- | ---
@@ -51,29 +51,28 @@ Digits | Range | Expected availability
 
 #### Collision Hash
 
-The collision has is calculated a the sha256 hash of the blockhash concatenated with the transaction hash.
+The **Collision Hash** is calculated by computing the SHA-256 hash of a string concatenation of the **Block Hash** and the **Transaction Hash**.
 
 
-#### Minimal Identifiers
+### Minimal Identifiers
 
-Most of the time it is expected that **Account Names** are uniquely registered in their block heights. This allows the shortest identifier to consist of only the **Name** and **Blockheight** to form a simple human-accessible **Minimal Identifier**.
+Most of the time it is expected that **Account Names** are uniquely registered in their block heights. This allows the shortest identifier to consist of only the **Account Name** and **Account Number** to form a simple human-accessible **Minimal Identifier**.
 
 ```
-James#574998;
+James#4137;
 ```
 
 #### Short Identifiers
 
-From time to time though, the same name will be registered more than once at the same blockheight, and a part of the **Transaction ID** will be needed. This **Collision Avoidance Part** is only as long as required to resolve the **Name Collision** and is expected to stay within a few characters, creating a **Short Identifier**.
+It is possible that two or more users register the same name in the same block. To uniquely identify such accounts we need to extend the **Minimal Identifier** with a **Collision Avoidance Part** consisting of as many of the initial digits of the **Collision Hash** as required to resolve the naming collision, creating a **Short Identifier**.
 
 ```
-James#574998:A;
-James#574998:5;
+James#4137.12;
+James#4137.17;
 ```
 
+* *Wallets should ideally poll an indexing server or lookup names in their local mempool to avoid naming collisions when possible*
 * *When a wallet detects naming collisions during registration, it may opt to re-create the account in a later block to get a simpler identifier.*
-
-
 
 
 ## Protocol 
@@ -93,7 +92,7 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 
 ### Account Name
 
-The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it is recommended that the name matches a strict **Regular Expression** of ```/\w{1,99}/``` to retain the human accessibility trait.
+The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it is recommended that clients enforce a strict **Regular Expression** of ```/\w{1,99}/``` to the name to retain the human accessibility trait.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
 
@@ -117,7 +116,7 @@ While it is technically possible for a client to download the referenced block, 
 
 ### Indexing Services
 
-A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their **Account Names** and **Block Heights**. To query such a service, the wallet/client should send a request for only the **Account Name** and **Block Height**, even if it is aware of a collision:
+A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their **Account Names** and **Account Numbers**. To query such a service, the wallet/client should send a request for only the **Account Name** and **Account Number**, even if it is aware of a collision:
 
 *By always omitting any **Collision Avoidance Parts** the indexing services cannot know which account is being looked for which increases privacy, and while an indexing service can always lie by omission, doing so without knowing which entry is being looked for adds a detection risk.*
 
@@ -132,14 +131,14 @@ The service should reply with a list of matches including all information necess
 
 ```
 {
-    "name": "<lookup_name",
+    "name": "<lookup_name>",
     "block": <block_height>,
     "result":
     {
         "payment_data":
         {
-            "key_hash": "",
-            "payment_code": ""
+            "key_hash": "<key_hash>",
+            "payment_code": "<payment_code>"
         },
         "transaction":
         {
@@ -179,7 +178,7 @@ The reasoning for this is that the data is immutable and software is not, so the
 
 ### Pre-Confirmation
 
-For new wallet users, waiting for a block confirmation is unreasanable before using their wallet. During the pre-confirmation time period the wallet should either fall back on other means of tranfserring the payment information, or should digitally share the hash of the transaction so that the other party can look it up in the mempool.
+For new wallet users, waiting for a block confirmation is unreasanable before using their wallet. During the pre-confirmation time period the wallet should either fall back on other means of transferring the payment information, or should digitally share either the full registration transaction or the hash of the transaction so that the other party can look it up in their mempool.
 
 Sharing the hash of the transaction allowed the other party to set up and store the finalized **Cash Account Identifier** in a local registry once it confirms in a block.
 
@@ -188,7 +187,7 @@ Sharing the hash of the transaction allowed the other party to set up and store 
 
 #### Reactive Collisions
 
-When a registration transaction is broadcast, it is technically possible for an attacker to inspect the transaction for the account name and automatically create a collision for account in order to prevent it from aquiring a minimal identifier. The number of collisions can be configured based on the acceptable cost for the attacker and the desired expected length the attacker wants the user to have for their **Collision Avoidance Part**.
+When a registration transaction is broadcast, it is technically possible for an attacker to inspect the transaction for the account name and automatically create a collision for the account in order to prevent it from aquiring a minimal identifier. The number of collisions can be configured based on the acceptable cost for the attacker and the desired expected length the attacker wants the user to have for their **Collision Avoidance Part**.
 
 The impact of the attack depends partly on the acceptable costs for the attacker, and partly on random chance, but is limited in what damage it can do (force longer identifiers).
 
