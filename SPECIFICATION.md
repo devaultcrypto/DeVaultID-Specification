@@ -132,8 +132,8 @@ A service can be made that continously scans the blockchain to create a database
 
 ```
 {
-    "name": "<lookup_name>",
-    "block": <block_height>
+    "name": "Alice",
+    "block": 560662
 }
 ```
 
