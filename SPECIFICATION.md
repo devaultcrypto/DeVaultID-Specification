@@ -137,7 +137,7 @@ A service can be made that continously scans the blockchain to create a database
 }
 ```
 
-The service should reply with a list of matches including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collosions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account.
+The service should reply with a list of matches including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collosions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
 
 ```
 {
