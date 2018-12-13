@@ -32,9 +32,14 @@ Alice#662.338697598;
 
 **Part** | **Example** | **Description**
 --- | --- | ---
-Account Name | Alice | Human readable name, as an UTF-8 encoded string
+Account Name | Alice | Human readable account name
 Account Number | #662 | Number separating accounts with the same name in different blocks.
 Collision Hash | .338697598 | Number separating accounts with the same name in the same block.
+
+#### Account Name
+
+The **Account Name** is chosen by the user at registration time and can be at most 99 characters long.
+
 
 #### Account Number
 
@@ -105,6 +110,8 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it is recommended that clients enforce a strict **Regular Expression** of ```/\w{1,99}/``` to the name to retain the human accessibility trait.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
+
+**TODO:** *The same transformations has to be used on both the client and server side, and across indexing servers. Furthemore, it might be worthwhile to look into: https://en.wikipedia.org/wiki/Unicode_equivalence*
 
 
 ### Payment Data Types
