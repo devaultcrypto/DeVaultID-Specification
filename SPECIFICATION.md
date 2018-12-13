@@ -137,44 +137,19 @@ A service can be made that continously scans the blockchain to create a database
 }
 ```
 
-The service should reply with a list of matches including all information necessary for an SPV wallet to independently verify each entry, such as the **Register Transaction**, **SPV Inclusion Proof** and **Block Information**. The client may then locally resolve any naming collosions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account.
+The service should reply with a list of matches including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collosions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account.
 
 ```
 {
     "name": "Alice",
     "block": 560662,
-    "result":
-    {
-        "payment_data":
+    "results":
+    [
         {
-            "key_hash": 0xEBDEB6430F3D16A9C6758D6C0D7A400C8E6BBEE4
-        },
-        "transaction":
-        {
-            "data": "0100000001243fb2a33149dc9755949870e919c5b07317f9eeb279eff910daaa6a0ce6400d010000006a47304402203678134dff42e170125e97217df08a9eb177be4aa48208f72ad138eb463a995402204a2aef94e894eff7c54a38e3717571d1a5be9957b8e79e3ae9b76a040b815bd7412103466c5a4c9f64754f5023006b29839d1c2a5f2e063f58d5ddc84185a606172dfffeffffff020000000000000000226a040101010105416c6963651501ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4c80d0800000000001976a9141fb7c820560a49d54c2e841ebc0b929639b91f7f88ac158e0800"
-        },
-        "inclusion_proof": 
-        {
-            "blockheight": 560662,
-            "position": ?,
-            "merkle": 
-             [
-                // TODO: Update these with the real merkle proof from the transaction...
-                "d844420b0f01398953b809b844bc9a5987f41d1373dab3180b6b4fe4de8633c4",
-                "3c1f63dae13e84aaba94d6ee12c7b48fa7b470eacfbe6e183ba008b7cbc3725c",
-                "0c5141f62f1ad58a6ebcee98868451ff392bc49bfb6daa5e4f492b6d175812cf",
-                "e414fd7ee39a83b7bd524f98ed09efa279a97fecbeeca68087de384eda71fc31",
-                "47fbf181989f2549d0d7a9fee2337ea60295059df0c0267cca173fd43b8e8596",
-                "bc441c955a6d9bc629e3a8e428aa7670d2bf631a9d11887bb4ad6b534fcf4817",
-                "1985800e12a150e6196ac07119278ea84ad296f1d8b2c88b2c85f61035f6a7cd",
-                "fc02dfab3083ca9185bce4e8b9357b5aacacce2172c969ac543da04eaa1c0c1d",
-                "6a36f10f34da6d66fdf75d4d97e0796106e7594409d354b8419a248231ab6935",
-                "cbc02af67b294fe7bad08a69f9435b520f8f89fa221583e0a84c8d9c9dc469a0",
-                "1043c7a6b9b4c42243e84a49a1f40476692b5d36d2f64dfb14409490ca3dfad2",
-                "fbbaec1ca9d29ba9ee6a89214428556827b4e5a254de59de5adabbabb2621f54"
-            ]
+            "transaction": "0100000001243fb2a33149dc9755949870e919c5b07317f9eeb279eff910daaa6a0ce6400d010000006a47304402203678134dff42e170125e97217df08a9eb177be4aa48208f72ad138eb463a995402204a2aef94e894eff7c54a38e3717571d1a5be9957b8e79e3ae9b76a040b815bd7412103466c5a4c9f64754f5023006b29839d1c2a5f2e063f58d5ddc84185a606172dfffeffffff020000000000000000226a040101010105416c6963651501ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4c80d0800000000001976a9141fb7c820560a49d54c2e841ebc0b929639b91f7f88ac158e0800",
+            "inclusion_proof": "0000c0207b65934755a2df17e7348a7e58c149ae5dfbdeb1faa3ea0200000000000000005767d9bcbbf3237b1db097ee7d3dc353722b8524bc03c131bf4455cea941f22ec293125ca030071869405157180200000be9a17b095ec090301730c6f9741f71e9e3fafb8a5c9004b34b0252b93f7cf6ee7705b5f132f690b7012f454afbf5929ef98c929eeeedd37ec0aa7fa07f647b851e1aa419ae5ce0f83e8c1cbf3ebe58865aef8b7afa99f70af4c0aad0418ccf00ec4982787de8e63c618842885fd23af3e71a4c4dc72f0a1dd45c8560f9b508014fd1ef4a33fc2f70dd583c8543635b858ba22b31af752daa3947df9a37e3ed6a0a4e90681594bcd2e7dd07facb5c37959f0aac2763584a0980169e85b760b10f3a510715955b79238b53aa0e3bbdf7a381606c496280d7750cc584bd8bf175ff1fe1cd26f962a8033f867d5cb2bf31a36bdd1bae3637e2fdc222238c7d1705614d6a8c68e12ff6015b17cf293488de51a379070c71321bb2acaa1d603a279e108caf09e663a52efa794149c91856ede90d150bd52add1b3d145e68f84b5e041fac33026e3b27f44eb6ae8907aeea1d4cd470d1198a1c693aea9e7e83273d02bc03ff2a00"
         }
-    }
+    ]
 }
 ```
 
