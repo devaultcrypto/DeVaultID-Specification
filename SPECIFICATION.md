@@ -195,7 +195,7 @@ When a registration transaction is broadcast, it is technically possible for an 
 
 Since the attacker cannot control the **Collision Hash** their costs based on **1 satoshi/byte** and **225 byte transactions** can be estimated as following:
 ```
-cost = accounts_per_block * minimal_size_of_collision_transaction * max(1, (desired_collision_length - 1) * average_transactions_per_collision_length)
+cost = accounts_per_block * size_of_attack_transaction * max(1, (desired_collision_length - 1) * average_transactions_per_collision_length)
 ```
 
 Accounts per block | 1 digit | 2 digits | 3 digits | 4 digits | 5 digits
