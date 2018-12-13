@@ -68,6 +68,8 @@ Step 4: Convert to decimal notation and store as a string
 Step 5: Reverse the the string so the last number is first
 ```
 
+* Note: the process might be able to be simpler by utilizing a HMAC to combine the purposes of step 1+2
+
 
 ### Minimal Identifiers
 
