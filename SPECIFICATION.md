@@ -193,9 +193,9 @@ Sharing the hash of the transaction allowed the other party to set up and store 
 
 When a registration transaction is broadcast, it is technically possible for an attacker to inspect the transaction for the account name and automatically create collisions for the account in order to prevent it from aquiring a minimal identifier. The number of collisions can be configured based on the acceptable cost for the attacker and the desired expected length the attacker wants the user to have for their **Collision Avoidance Part**.
 
-Since the attacker cannot control the **Collision Hash** their successrate and costs based on 1 satoshi per byte can be estimated as following:
+Since the attacker cannot control the **Collision Hash** their costs based on **1 satoshi/byte** and **225 byte transactions** can be estimated as following:
 ```
-cost = accounts_per_block * minimal_size_of_collision * max(1, (desired_collision_length - 1) * average_transactions_per_collision_length)
+cost = accounts_per_block * minimal_size_of_collision_transaction * max(1, (desired_collision_length - 1) * average_transactions_per_collision_length)
 ```
 
 Accounts per block | 1 digit | 2 digits | 3 digits | 4 digits | 5 digits
