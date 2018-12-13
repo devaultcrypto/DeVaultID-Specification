@@ -191,22 +191,21 @@ Sharing the hash of the transaction allowed the other party to set up and store 
 
 #### Reactive Collisions
 
-When a registration transaction is broadcast, it is technically possible for an attacker to inspect the transaction for the account name and automatically create a collision for the account in order to prevent it from aquiring a minimal identifier. The number of collisions can be configured based on the acceptable cost for the attacker and the desired expected length the attacker wants the user to have for their **Collision Avoidance Part**.
+When a registration transaction is broadcast, it is technically possible for an attacker to inspect the transaction for the account name and automatically create collisions for the account in order to prevent it from aquiring a minimal identifier. The number of collisions can be configured based on the acceptable cost for the attacker and the desired expected length the attacker wants the user to have for their **Collision Avoidance Part**.
 
-The impact of the attack depends partly on the acceptable costs for the attacker, and partly on random chance, but is limited in what damage it can do (force longer identifiers). Given that the attacker cannot control the outcome of the **Collision Hash** and that we are using a base10 representation, their successrate and costs can be estimted as following:
+Given that the attacker cannot control the outcome of the **Collision Hash** and that we are using a base10 representation, their successrate and costs can be estimated as following:
 
-Cost estimates based on 1sat/byte minimal transaction size:
+Cost estimates based on 1 satoshi per byte:
 ```
-(size of inputs + size of outputs + 32 byte) * 1 = ~225?
+cost = accounts_per_block * minimal_size_of_collision * max(1, (desired_collision_length - 1) * average_transactions_per_collision_length)
 ```
 
-Collision Length | Average number of TX's needed | Attack Cost (in BCH)
---- | --- | ---
-1 | 10 | 0.0000225
-2 | 100 | 0.000225
-3 | 1000 | 0.00225
-4 | 10000 | 0.0225
-5 | 100000 | 0.225
+Accounts per block | 1 digit | 2 digits | 3 digits | 4 digits | 5 digits
+--- | --- | --- | --- | --- | ---
+1 | 0.00000225 | 0.0000225 | 0.000225 | 0.00225 | 0.0225
+10 | 0.0000225 | 0.000225 | 0.00225 | 0.0225 | 0.225
+100 | 0.000225 | 0.00225 | 0.0225 | 0.225 | 2.25
+1000 | 0.00225 | 0.0225 | 0.225 | 2.25 | 22.5
 
 
 #### Index Collusion
