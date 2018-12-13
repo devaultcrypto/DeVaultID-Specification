@@ -27,18 +27,20 @@ When a user receives a **Cash Account Identifier** their wallet looks up the **P
 A **Complete Identifier** consists of an **Account Name**, a **Account Number** and a **Collision Hash**.
 
 ```
-James#4137.6117326955556230485904558655836903590722755773537808380229840327895552801816;
+Alice#662.338697598;
 ```
 
 **Part** | **Example** | **Description**
 --- | --- | ---
-Account Name | James | Human readable name, as an UTF-8 encoded string
-Account Number | #4137 | Number separating accounts with the same name in different blocks.
-Collision Hash | .6117[...]1816 | Number separating accounts with the same name in the same block.
+Account Name | Alice | Human readable name, as an UTF-8 encoded string
+Account Number | #662 | Number separating accounts with the same name in different blocks.
+Collision Hash | .338697598 | Number separating accounts with the same name in the same block.
 
 #### Account Number
 
 The **Account Number** calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and substracting an arbitrary value. This value will be determined when the specification is finalized and publicly released and will be chosen such that an account registered in the first block of 2019 will have a **Account Number** of 100.
+
+For examples in this draft specification, the number is **560000**.
 
 Digits | Range | Expected availability
 --- | --- | ---
@@ -51,10 +53,14 @@ Digits | Range | Expected availability
 
 #### Collision Hash
 
-The **Collision Hash** is calculated by computing the SHA-256 hash of a string concatenation of the **Block Hash** and the **Transaction Hash**.
+The **Collision Hash** is used to resolve naming collisions within the same block and is calculated as follows:
 
 ```
-sha256(concat(<block hash>, <transaction hash>)) = '<collision hash>'
+Step 1: Concatenate the block hash with the transaction hash
+Step 2: Hash the results of the concatenation with sha256
+Step 3: Take the first four bytes and discard the rest
+Step 4: Convert to decimal notation and store as a string
+Step 5: Reverse the the string so the last number is first
 ```
 
 
@@ -63,7 +69,7 @@ sha256(concat(<block hash>, <transaction hash>)) = '<collision hash>'
 Most of the time it is expected that **Account Names** are uniquely registered in their block heights. This allows the shortest identifier to consist of only the **Account Name** and **Account Number** to form a simple human-accessible **Minimal Identifier**.
 
 ```
-James#4137;
+Alice#662;
 ```
 
 #### Short Identifiers
@@ -71,8 +77,8 @@ James#4137;
 It is possible that two or more users register the same name in the same block. To uniquely identify such accounts we need to extend the **Minimal Identifier** with a **Collision Avoidance Part** consisting of as many of the initial digits of the **Collision Hash** as required to resolve the naming collision, creating a **Short Identifier**.
 
 ```
-James#4137.12;
-James#4137.17;
+Alice#662.33;
+Alice#662.37;
 ```
 
 * *Wallets should ideally poll an indexing server or lookup names in their local mempool to avoid naming collisions when possible*
@@ -135,26 +141,25 @@ The service should reply with a list of matches including all information necess
 
 ```
 {
-    "name": "<lookup_name>",
-    "block": <block_height>,
+    "name": "Alice",
+    "block": 560662,
     "result":
     {
         "payment_data":
         {
-            "key_hash": "<key_hash>",
-            "payment_code": "<payment_code>"
+            "key_hash": 0xEBDEB6430F3D16A9C6758D6C0D7A400C8E6BBEE4
         },
         "transaction":
         {
-            "id": "967d009ee103340d6762819ebf452107561423fe97b04fbf501594f231e212c4",
-            "data": ""
+            "data": "0100000001243fb2a33149dc9755949870e919c5b07317f9eeb279eff910daaa6a0ce6400d010000006a47304402203678134dff42e170125e97217df08a9eb177be4aa48208f72ad138eb463a995402204a2aef94e894eff7c54a38e3717571d1a5be9957b8e79e3ae9b76a040b815bd7412103466c5a4c9f64754f5023006b29839d1c2a5f2e063f58d5ddc84185a606172dfffeffffff020000000000000000226a040101010105416c6963651501ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4c80d0800000000001976a9141fb7c820560a49d54c2e841ebc0b929639b91f7f88ac158e0800"
         },
         "inclusion_proof": 
         {
-            "blockheight": 369863,
-            "position": 2917,
+            "blockheight": 560662,
+            "position": ?,
             "merkle": 
              [
+                // TODO: Update these with the real merkle proof from the transaction...
                 "d844420b0f01398953b809b844bc9a5987f41d1373dab3180b6b4fe4de8633c4",
                 "3c1f63dae13e84aaba94d6ee12c7b48fa7b470eacfbe6e183ba008b7cbc3725c",
                 "0c5141f62f1ad58a6ebcee98868451ff392bc49bfb6daa5e4f492b6d175812cf",
