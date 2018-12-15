@@ -28,14 +28,14 @@ When a user receives a **Cash Account Identifier** their wallet looks up the **P
 A **Complete Identifier** consists of an **Account Name**, a **Account Number** and a **Collision Hash**.
 
 ```
-Alice#662.338697598;
+Alice#662.5607528730;
 ```
 
 **Part** | **Example** | **Description**
 --- | --- | ---
 Account Name | Alice | Human readable account name
 Account Number | #662 | Number separating accounts with the same name in different blocks.
-Collision Hash | .338697598 | Number separating accounts with the same name in the same block.
+Collision Hash | .5607528730 | Number separating accounts with the same name in the same block.
 
 #### Account Name
 
@@ -90,8 +90,8 @@ Alice#662;
 It is possible that two or more users register the same name in the same block. To uniquely identify such accounts we need to extend the **Minimal Identifier** with a **Collision Avoidance Part** consisting of as many of the initial digits of the **Collision Hash** as required to resolve the naming collision, creating a **Short Identifier**.
 
 ```
-Alice#662.33;
-Alice#662.37;
+Alice#662.56;
+Alice#662.51;
 ```
 
 * *Wallets should ideally poll an indexing server or lookup names in their local mempool to avoid naming collisions when possible*
