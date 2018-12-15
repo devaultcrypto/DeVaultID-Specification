@@ -1,4 +1,5 @@
-**This is a draft specification - please do not use or share until finalized.**
+* Status: **Draft**, *please do not use or share until finalized.*
+* Activation blockheight: **Pending** (first block after the 10-year aniversary of the **Bitcoin Genesis Block**, *2019-01-03 18:15 UTC*)
 
 
 # Abstract
@@ -43,9 +44,13 @@ The **Account Name** is chosen by the user at registration time and can be at mo
 
 #### Account Number
 
-The **Account Number** calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and substracting an arbitrary value. This value will be determined when the specification is finalized and publicly released and will be chosen such that an account registered in the first block of 2019 will have a **Account Number** of 100.
+The **Account Number** is calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and substracting a **Block Modification Value**.
 
-For examples in this draft specification, the number is **560000**.
+The **Block Modification Value** is equal to the **Activation Block Height** minus 100 and was choosen such that new accounts would create **Account Numbers** starting with 100. 
+
+Registrations in blocks before the **Activation Block Height** are automatically invalid and must not be used.
+
+*For examples in this draft specification, the number was set to **560000** in order to avoid negative identifiers.*
 
 Digits | Range | Expected availability
 --- | --- | ---
@@ -110,11 +115,9 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 
 ### Account Name
 
-The **Account Name** is an UTF-8 encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. Furthermore it is recommended that clients enforce a strict **Regular Expression** of ```/\w{1,99}/``` to the name to retain the human accessibility trait.
+The **Account Name** is an ASCII encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. The string must adhere to a strict **Regular Expression** of ```/[a-zA-Z0-9_]{1,99}/``` to retain the human accessibility trait.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
-
-**TODO:** *The same transformations has to be used on both the client and server side, and across indexing servers. Furthemore, it might be worthwhile to look into: https://en.wikipedia.org/wiki/Unicode_equivalence*
 
 
 ### Payment Data Types
