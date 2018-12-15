@@ -66,6 +66,7 @@ Step 2: Hash the results of the concatenation with sha256
 Step 3: Take the first four bytes and discard the rest
 Step 4: Convert to decimal notation and store as a string
 Step 5: Reverse the the string so the last number is first
+Step 6: Right pad the string with zeroes up to a string length of 10.
 ```
 
 * Note: the process might be able to be simpler by utilizing a HMAC to combine the purposes of step 1+2
