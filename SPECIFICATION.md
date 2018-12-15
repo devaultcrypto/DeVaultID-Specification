@@ -87,8 +87,6 @@ Step 6: Right pad the string with zeroes up to a string length of 10.
 => 5607528730
 ```
 
-* Note: the process might be able to be simpler by utilizing a HMAC to combine the purposes of step 1+2
-
 
 ### Minimal Identifiers
 
