@@ -1,5 +1,5 @@
-* Status: **Draft**, *please do not use or share until finalized.*
-* Activation blockheight: **Pending** (first block after the 10-year aniversary of the **Bitcoin Genesis Block**, *2019-01-03 18:15 UTC*)
+* Status: **Draft** *(please do not use or share until finalized.)*
+* Activation blockheight: **Pending** *(first block after the 10-year aniversary of the **Bitcoin Genesis Block**, *2019-01-03 18:15 UTC*)*
 
 
 # Abstract
