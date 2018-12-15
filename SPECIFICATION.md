@@ -65,15 +65,26 @@ Digits | Range | Expected availability
 
 The **Collision Hash** is used to resolve naming collisions within the same block and is calculated as outlined below.
 
-Using the example values of '00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af' for the block hash and '0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec' for the transaction hash:
+Using the example values of `00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af` for the block hash and `0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec` for the transaction hash:
 
 ```
 Step 1: Concatenate the block hash with the transaction hash
+=> 00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec
+
 Step 2: Hash the results of the concatenation with sha256
+=> 168bbea9b56f464935c87d773ad17744dcc687a668aff7b4846dbfcb9de3cc78
+
 Step 3: Take the first four bytes and discard the rest
+=> 168bbea9
+
 Step 4: Convert to decimal notation and store as a string
+=> 378257065
+
 Step 5: Reverse the the string so the last number is first
+=> 560752873
+
 Step 6: Right pad the string with zeroes up to a string length of 10.
+=> 5607528730
 ```
 
 * Note: the process might be able to be simpler by utilizing a HMAC to combine the purposes of step 1+2
