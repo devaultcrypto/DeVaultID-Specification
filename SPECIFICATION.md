@@ -180,22 +180,54 @@ Sharing the hash of the transaction allowed the other party to set up and store 
 
 #### Reactive Collisions
 
-When a registration transaction is broadcast, it is technically possible for an attacker to inspect the transaction for the account name and automatically create collisions for the account in order to prevent it from aquiring a minimal identifier. The number of collisions can be configured based on the acceptable cost for the attacker and the desired expected length the attacker wants the user to have for their **Collision Avoidance Part**.
+When someone broadcasts a registration transaction, an attacker can inspect the transaction for the account name and then broadcast additional registration transactions with the same name for inclusion in the same block. This forces use of the **Collision Avoidance Part** and prevents the original user from acquiring a minimal identifier.
 
-Since the attacker cannot control the **Collision Hash** their costs based on **1 satoshi/byte** and **225 byte transactions** can be estimated as following:
+One attack objective would be to disrupt usability by increasing the length of the **Collision Avoidance Part**. For example:
+
 ```
-cost = accounts_to_attack * size_of_attack_transaction * max(1, (desired_collision_length - 1) * average_transactions_per_collision_length)
+Original registration (after confirmation in a block)
+Alice#100.1234567890
+
+Disruptive registrations : Required Short ID for original registration
+Alice#100.__________     : Alice#100.1    (No same prefix digits ==> 1 digit Short ID)
+Alice#100.1_________     : Alice#100.12   (Same 1 prefix digit   ==> 2 digit Short ID)
+Alice#100.12________     : Alice#100.123  (Same 2 prefix digits  ==> 3 digit Short ID)
+Alice#100.123_______     : Alice#100.1234 (Same 3 prefix digits  ==> 4 digit Short ID)
+...
 ```
 
-Accounts | 1 digit | 2 digits | 3 digits | 4 digits | 5 digits
---- | --- | --- | --- | --- | ---
+However, because the **Collision Hash** depends on the block hash, the attacker cannot predict it and must submit many attack registrations to expect matching prefix digits.
+
+Given 1 original registration, on average the attacker can force `d` digits of the **Collision Avoidance Part** with 10<sup>(`d`-1)</sup> attack registrations. That is, exactly 1 transaction is required to force `d = 1`, and then on average 10 transactions are required to force `d = 2`, 100 for `d = 3`, etc. The cost for the attack scales directly with the number of attack registrations.
+
+```
+attack_tx = 10^(d-1)
+bch_per_tx = 0.00000255
+attack_bch = attack_tx * bch_per_tx
+```
+| Collision length `d` | Attack tx (avg) | Attack BCH (avg) |
+|---------------------:|----------------:|-----------------:|
+|                    1 |               1 |       0.00000225 |
+|                    2 |              10 |        0.0000225 |
+|                    3 |             100 |         0.000225 |
+|                    4 |           1,000 |          0.00225 |
+|                    5 |          10,000 |           0.0225 |
+|                    6 |         100,000 |            0.225 |
+|                    7 |       1,000,000 |             2.25 |
+
+Additionally, a user can mitigate attacks as well as increase privacy by broadcasting `r` registrations and choosing any one of them after block confirmation. The attacker cannot know which registration will be used and therefore must attack all registrations. In other words, the user can greatly increase the cost for the attacker with a small number of mitigation transactions.
+
+Note: Mitigation registrations interact with themselves and with attack registrations, reducing the actual attack cost. A more formal treatment of the problem should be made but the fundamental resistance to the reactive collision attack remains. Below is a table of approximate attack cost when the user makes mitigation registrations:
+
+User registrations `r` | Attack BCH @Collision length `d = 1` | `d = 2` | `d = 3` | `d = 4` | `d = 5`
+---: | --- | --- | --- | --- | ---
 1 | 0.00000225 | 0.0000225 | 0.000225 | 0.00225 | 0.0225
 10 | 0.0000225 | 0.000225 | 0.00225 | 0.0225 | 0.225
 100 | 0.000225 | 0.00225 | 0.0225 | 0.225 | 2.25
-1000 | 0.00225 | 0.0225 | 0.225 | 2.25 | 22.5
-10000 | 0.0225 | 0.225 | 2.25 | 22.5 | 225
-100000 | 0.225 | 2.25 | 22.5 | 225 | 2250
-1000000 | 2.25 | 22.5 | 225 | 2250 | 22500
+1,000 | 0.00225 | 0.0225 | 0.225 | 2.25 | 22.5
+10,000 | 0.0225 | 0.225 | 2.25 | 22.5 | 225
+100,000 | 0.225 | 2.25 | 22.5 | 225 | 2,250
+1,000,000 | 2.25 | 22.5 | 225 | 2,250 | 22,500
 
 
 #### Index Collusion
