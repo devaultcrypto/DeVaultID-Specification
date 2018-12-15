@@ -217,25 +217,26 @@ However, because the **Collision Hash** depends on the block hash, the attacker 
 Given 1 original registration, on average the attacker can force `d` digits of the **Collision Avoidance Part** with 10<sup>(`d`-1)</sup> attack registrations. That is, exactly 1 transaction is required to force `d = 1`, and then on average 10 transactions are required to force `d = 2`, 100 for `d = 3`, etc. The cost for the attack scales directly with the number of attack registrations.
 
 ```
-attack_tx = 10^(d-1)
-bch_per_tx = 0.00000255
-attack_bch = attack_tx * bch_per_tx
+attack_transactions = 10^(d-1)
+bch_per_transaction = 0.00000255
+attack_bch = attack_transactions * bch_per_transaction
 ```
-| Collision length `d` | Attack tx (avg) | Attack BCH (avg) |
-|---------------------:|----------------:|-----------------:|
-|                    1 |               1 |       0.00000225 |
-|                    2 |              10 |        0.0000225 |
-|                    3 |             100 |         0.000225 |
-|                    4 |           1,000 |          0.00225 |
-|                    5 |          10,000 |           0.0225 |
-|                    6 |         100,000 |            0.225 |
-|                    7 |       1,000,000 |             2.25 |
 
-Additionally, a user can mitigate attacks as well as increase privacy by broadcasting `r` registrations and choosing any one of them after block confirmation. The attacker cannot know which registration will be used and therefore must attack all registrations. In other words, the user can greatly increase the cost for the attacker with a small number of mitigation transactions.
+| Forced digits `d` | Attack transactions | Attack BCH |
+|------------------:|--------------------:|-----------:|
+|                 1 |                   1 |  0.0000023 |
+|                 2 |                  10 |  0.0000225 |
+|                 3 |                 100 |  0.0002250 |
+|                 4 |               1,000 |  0.0022500 |
+|                 5 |              10,000 |  0.0225000 |
+|                 6 |             100,000 |  0.2250000 |
+|                 7 |           1,000,000 |  2.2500000 |
 
-Note: Mitigation registrations interact with themselves and with attack registrations, reducing the actual attack cost. A more formal treatment of the problem should be made but the fundamental resistance to the reactive collision attack remains. Below is a table of approximate attack cost when the user makes mitigation registrations:
+A user might try to mitigate attacks by broadcasting `r` total registrations and then choosing one after confirmation in a block. However, `r-1` of the registrations act effectively as attack registrations for the purpose of increasing collision digits.
 
-User registrations `r` | Attack BCH @Collision length `d = 1` | `d = 2` | `d = 3` | `d = 4` | `d = 5`
+If the attacker intends to disrupt the protocol as a whole, the attack becomes more expensive with increased usage:
+
+Registrations | Attack BCH @ Forced digits `d = 1` | `d = 2` | `d = 3` | `d = 4` | `d = 5`
 ---: | --- | --- | --- | --- | ---
 1 | 0.00000225 | 0.0000225 | 0.000225 | 0.00225 | 0.0225
 10 | 0.0000225 | 0.000225 | 0.00225 | 0.0225 | 0.225
