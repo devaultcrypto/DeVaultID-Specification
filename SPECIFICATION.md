@@ -253,6 +253,8 @@ When **Alice** and **Bob** uses the same **Indexing Service** there is a risk th
 
 To mitigate this attack **Alice** should poll random indexing services after creation, or download the full block to locally detect any collisions. If any honest service report a collision or there is a locally detect a collision, **Alice** now knows that her chosen indexing service cannot be trusted.
 
+If **Alice** properly verifies that her identifier has the required length for her **Collision Avoidance Part**, then **Bob** will either fail to look up her **Cash Account**, or will be able to positively prove that her **Payment Data** corresponds to a valid **Registration Transaction**.
+
 
 # References
 
