@@ -112,7 +112,7 @@ Alice#662.51;
 
 ## Protocol 
 
-To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with an OP_RETURN output cointaining a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
+To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with a single OP_RETURN output in any position, cointaining a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
 
 ```
 OP_RETURN (0x6a)
