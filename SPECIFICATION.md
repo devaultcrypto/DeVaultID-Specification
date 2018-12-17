@@ -127,7 +127,7 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lo
 
 ### Account Name
 
-The **Account Name** is an ASCII encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. The string must adhere to a strict **Regular Expression** of ```/[a-zA-Z0-9_]{1,99}/``` to retain the human accessibility trait.
+The **Account Name** is an ASCII encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. The string must adhere to a strict **Regular Expression** of `/[a-zA-Z0-9_]{1,99}/` to retain the human accessibility trait.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
 
@@ -151,7 +151,7 @@ While it is technically possible for a client to download the referenced block, 
 
 ### Indexing Services
 
-A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their **Account Names** and **Account Numbers**. To query such a service, the wallet/client should send a request for only the **Account Name** and **Account Number**, even if it is aware of a collision:
+A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their **Account Names** and **Account Numbers**. An indexing server should thus validate the **Account Name** with the same strict **Regular Expression** (`/[a-zA-Z0-9_]{1,99}/`) as is applied to the registration. To query such a service, the wallet/client should send a request for only the **Account Name** and **Account Number**, even if it is aware of a collision:
 
 *By always omitting any **Collision Avoidance Parts** the indexing services cannot know which account is being looked for which increases privacy, and while an indexing service can always lie by omission, doing so without knowing which entry is being looked for adds a detection risk.*
 
