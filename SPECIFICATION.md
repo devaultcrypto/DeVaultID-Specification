@@ -112,7 +112,9 @@ Alice#662.51;
 
 #### Account Identicons
 
-As an optional feature clients may calculate and show an identicon for each cashaccount from the following unicode emoji list:
+As an optional feature clients may calculate and show an **Account Identicon** for each **Cash Account** from the following unicode emoji list:
+
+*If the locally available fonts do not support all emojis, consider using the [Noto Color Emoji](https://www.google.com/get/noto/help/emoji/) font.*
 
  &#128123;&#128018;&#128021;&#128008;&#128014;&#128004;&#128022;&#128016;&#128042;&#128024;  &#128001;&#128007;&#128063;&#129415;&#128019;&#128039;&#129414;&#129417;&#128034;&#128013;
  
@@ -126,7 +128,10 @@ As an optional feature clients may calculate and show an identicon for each cash
 
 The identicon acts like a checksum which helps prevent against typing misstakes during user entry, but only has a probabilistic benefit in the sense that it is technically possible for a user to mistype their entry into another valid account, which then has a 1% chance of having the same identicon.
 
-To calculate which emoji to use perform the following steps:
+
+##### Account Identicon Calculation
+
+To calculate which emoji to use for the **Account Identicon** perform the following steps:
 
 * **Block Hash**: `00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af`
 * **Transaction Hash**: `0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec`
