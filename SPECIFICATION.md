@@ -126,7 +126,7 @@ As an optional feature clients may calculate and show an **Account Identicon** f
  
  &#129345;&#128269;&#128367;&#128161;&#128214;&#9993;&#128230;&#9999;&#128188;&#128203;  &#9986;&#128273;&#128274;&#128296;&#128295;&#9878;&#9775;&#128681;&#128099;&#127838;
 
-The identicon acts like a checksum which helps prevent against typing misstakes during user entry, but only has a probabilistic benefit in the sense that it is technically possible for a user to mistype their entry into another valid account, which then has a 1% chance of having the same identicon.
+The identicon acts like a checksum which helps prevent against typing mistakes during user entry, but only has a probabilistic benefit in the sense that it is technically possible for a user to mistype their entry into another valid account, which then has a 1% chance of having the same identicon.
 
 
 ##### Account Identicon Calculation
