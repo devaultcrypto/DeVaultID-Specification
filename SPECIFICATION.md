@@ -110,6 +110,49 @@ Alice#662.51;
 * *When a wallet detects naming collisions during registration, it may opt to re-create the account in a later block to get a simpler identifier.*
 
 
+#### Account Identicons
+
+As an optional feature clients may calculate and show an identicon for each cashaccount from the following unicode emoji list:
+
+ &#128123;&#128018;&#128021;&#128008;&#128014;&#128004;&#128022;&#128016;&#128042;&#128024;  &#128001;&#128007;&#128063;&#129415;&#128019;&#128039;&#129414;&#129417;&#128034;&#128013;
+ 
+ &#128031;&#128025;&#128012;&#129419;&#128029;&#128030;&#128375;&#127803;&#127794;&#127796;  &#127797;&#127809;&#127808;&#127815;&#127817;&#127819;&#127820;&#127822;&#127826;&#127827;
+ 
+ &#129373;&#129381;&#129365;&#127805;&#127798;&#127812;&#129472;&#129370;&#129408;&#127850;  &#127874;&#127853;&#127968;&#128663;&#128690;&#9973;&#9992;&#128641;&#128640;&#8986;
+ 
+ &#9728;&#11088;&#127752;&#9730;&#127880;&#127872;&#9917;&#9824;&#9829;&#9830;  &#9827;&#128083;&#128081;&#127913;&#128276;&#127925;&#127908;&#127911;&#127928;&#127930;
+ 
+ &#129345;&#128269;&#128367;&#128161;&#128214;&#9993;&#128230;&#9999;&#128188;&#128203;  &#9986;&#128273;&#128274;&#128296;&#128295;&#9878;&#9775;&#128681;&#128099;&#127838;
+
+The identicon acts like a checksum which helps prevent against typing misstakes during user entry, but only has a probabilistic benefit in the sense that it is technically possible for a user to mistype their entry into another valid account, which then has a 1% chance of having the same identicon.
+
+To calculate which emoji to use perform the following steps:
+
+* **Block Hash**: `00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af`
+* **Transaction Hash**: `0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec`
+* **Emoji List**: `[ 128123, 128018, 128021, 128008, 128014, 128004, 128022, 128016, 128042, 128024, 128001, 128007, 128063, 129415, 128019, 128039, 129414, 129417, 128034, 128013, 128031, 128025, 128012, 129419, 128029, 128030, 128375, 127803, 127794, 127796, 127797, 127809, 127808, 127815, 127817, 127819, 127820, 127822, 127826, 127827, 129373, 129381, 129365, 127805, 127798, 127812, 129472, 129370, 129408, 127850, 127874, 127853, 127968, 128663, 128690, 9973, 9992, 128641, 128640, 8986, 9728, 11088, 127752, 9730, 127880, 127872, 9917, 9824, 9829, 9830, 9827, 128083, 128081, 127913, 128276, 127925, 127908, 127911, 127928, 127930, 129345, 128269, 128367, 128161, 128214, 9993, 128230, 9999, 128188, 128203, 9986, 128273, 128274, 128296, 128295, 9878, 9775, 128681, 128099, 127838 ]`
+
+```
+Step 1: Concatenate the block hash with the transaction hash
+=> 00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec
+
+Step 2: Hash the results of the concatenation with sha256
+=> 168bbea9b56f464935c87d773ad17744dcc687a668aff7b4846dbfcbc
+
+Step 3: Take the last four bytes and discard the rest
+=> 9de3cc78
+
+Step 4: Convert to decimal notation
+=> 2648951928
+
+Step 5: Modulus by 100.
+=> 28
+
+Step 6: Take the emoji at the given position in the emoji list.
+=> 127794
+```
+
+
 ## Protocol 
 
 To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with a single OP_RETURN output in any position, cointaining a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
