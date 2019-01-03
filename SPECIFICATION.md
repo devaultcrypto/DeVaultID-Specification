@@ -1,5 +1,5 @@
-* Status: **Draft** *(please do not use or share until finalized.)*
-* Activation blockheight: **Pending** *(first block after the 10-year aniversary of the **Bitcoin Genesis Block**, *2019-01-03 18:15 UTC*)*
+* Status: Released, version 1.0
+* Activation blockheight: 560000?
 
 
 # Abstract
@@ -171,7 +171,7 @@ OP_RETURN (0x6a)
 
 ### Protocol Identifier
 
-This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md) and uses the 0x01010101 protocol identifier.
+This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md) and uses the 0x01010101 protocol identifier and has to be pushed with the 0x04 opcode.
 
 ### Account Name
 
@@ -189,7 +189,7 @@ Presentation of **Account Names** should always be in the case that they are sto
 Key Hash | 0x01 | Key Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
 Script Hash | 0x02 | Script Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
 Payment Code | 0x03 | Payment Code (80) | 
-Stealth Keys | 0x04 | Spend Key (33) View Key (33) | *(The keys are compressed, No formal specification exist, needs a reference and peer review)*
+Stealth Keys | 0x04 | Spend Key (33) View Key (33) | <reserved for stealth keys, pending a formal specification>
 
 
 ## Security and Scalability
@@ -210,7 +210,7 @@ A service can be made that continously scans the blockchain to create a database
 }
 ```
 
-The service should reply with a list of matches including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collosions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
+The service should reply with a list of matches using the same case folding transformation as is done for collision detection, including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collosions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
 
 ```
 {
