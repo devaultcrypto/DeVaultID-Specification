@@ -1,5 +1,6 @@
 * Status: Released, version 1.0
-* Activation blockheight: 560000?
+* Activation blockheight: 563720
+* Block Modification Value: 563620
 
 
 # Abstract
