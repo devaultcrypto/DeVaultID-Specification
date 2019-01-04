@@ -21,7 +21,7 @@ Entry | Account | Validity | Notes
 #### Account Transaction
 
 Entry | Blockheight | Transaction ID
---- | --- | --- | ---
+--- | --- | ---
 1 | 563720 | 590d1fdf7e04af0ee08f9194bb9e8d1971bdcbf55d29303d5bf32d4eae5e7136
 2 | 563820 | 17d080c925662159f806a75ad9394c58f482348bad9dbb5192e129ca6a3503da
 3 | 563743 | 4e5af7d65ab632f256f95817a860b37ac2eb0391fd9992db60bab1bc54e1d430
