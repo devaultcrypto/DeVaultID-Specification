@@ -29,14 +29,14 @@ When a user receives a **Cash Account Identifier** their wallet looks up the **P
 A **Complete Identifier** consists of an **Account Name**, a **Account Number** and a **Collision Hash**.
 
 ```
-Alice#662.5607528730;
+Jonathan#100.5876958390;
 ```
 
 **Part** | **Example** | **Description**
 --- | --- | ---
-Account Name | Alice | Human readable account name
-Account Number | #662 | Number separating accounts with the same name in different blocks.
-Collision Hash | .5607528730 | Number separating accounts with the same name in the same block.
+Account Name | Jonathan | Human readable account name
+Account Number | #100 | Number separating accounts with the same name in different blocks.
+Collision Hash | .5876958390 | Number separating accounts with the same name in the same block.
 
 #### Account Name
 
@@ -51,8 +51,6 @@ The **Block Modification Value** is equal to the **Activation Block Height** min
 
 Registrations in blocks before the **Activation Block Height** are automatically invalid and must not be used.
 
-*For examples in this draft specification, the number was set to **560000** in order to avoid negative identifiers.*
-
 Digits | Range | Expected availability
 --- | --- | ---
 3 | 100~999 | ~7 days
@@ -66,27 +64,27 @@ Digits | Range | Expected availability
 
 The **Collision Hash** is used to resolve naming collisions within the same block and is calculated as follows:
 
-* **Block Hash**: `00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af`
-* **Transaction Hash**: `0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec`
+* **Block Hash**: `000000000000000002abbeff5f6fb22a0b3b5c2685c6ef4ed2d2257ed54e9dcb`
+* **Transaction Hash**: `590d1fdf7e04af0ee08f9194bb9e8d1971bdcbf55d29303d5bf32d4eae5e7136`
 
 ```
 Step 1: Concatenate the block hash with the transaction hash
-=> 00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec
+=> 000000000000000002abbeff5f6fb22a0b3b5c2685c6ef4ed2d2257ed54e9dcb590d1fdf7e04af0ee08f9194bb9e8d1971bdcbf55d29303d5bf32d4eae5e7136
 
 Step 2: Hash the results of the concatenation with sha256
-=> 168bbea9b56f464935c87d773ad17744dcc687a668aff7b4846dbfcb9de3cc78
+=> 37f1d9b19e25be4d310f3d4a798091ad38a2fb4a3fb66a82ff1d12e2e29a6230
 
 Step 3: Take the first four bytes and discard the rest
-=> 168bbea9
+=> 37f1d9b1
 
 Step 4: Convert to decimal notation and store as a string
-=> 378257065
+=> 938596785
 
 Step 5: Reverse the the string so the last number is first
-=> 560752873
+=> 587695839
 
 Step 6: Right pad the string with zeroes up to a string length of 10.
-=> 5607528730
+=> 5876958390
 ```
 
 
@@ -95,7 +93,7 @@ Step 6: Right pad the string with zeroes up to a string length of 10.
 Most of the time it is expected that **Account Names** are uniquely registered in their block heights. This allows the shortest identifier to consist of only the **Account Name** and **Account Number** to form a simple human-accessible **Minimal Identifier**.
 
 ```
-Alice#662;
+Jonathan#100;
 ```
 
 #### Short Identifiers
@@ -103,8 +101,8 @@ Alice#662;
 It is possible that two or more users register the same name in the same block. To uniquely identify such accounts we need to extend the **Minimal Identifier** with a **Collision Avoidance Part** consisting of as many of the initial digits of the **Collision Hash** as required to resolve the naming collision, creating a **Short Identifier**.
 
 ```
-Alice#662.56;
-Alice#662.51;
+Jonathan#100.56;
+Jonathan#100.51;
 ```
 
 * *Wallets should ideally poll an indexing server or lookup names in their local mempool to avoid naming collisions when possible*
@@ -134,28 +132,28 @@ The identicon acts like a checksum which helps prevent against typing mistakes d
 
 To calculate which emoji to use for the **Account Identicon** perform the following steps:
 
-* **Block Hash**: `00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af`
-* **Transaction Hash**: `0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec`
+* **Block Hash**: `000000000000000002abbeff5f6fb22a0b3b5c2685c6ef4ed2d2257ed54e9dcb`
+* **Transaction Hash**: `590d1fdf7e04af0ee08f9194bb9e8d1971bdcbf55d29303d5bf32d4eae5e7136`
 * **Emoji List**: `[ 128123, 128018, 128021, 128008, 128014, 128004, 128022, 128016, 128042, 128024, 128000, 128007, 128063, 129415, 128019, 128039, 129414, 129417, 128034, 128013, 128031, 128025, 128012, 129419, 128029, 128030, 128375, 127803, 127794, 127796, 127797, 127809, 127808, 127815, 127817, 127819, 127820, 127822, 127826, 127827, 129373, 129381, 129365, 127805, 127798, 127812, 129472, 129370, 129408, 127850, 127874, 127853, 127968, 128663, 128690, 9973, 9992, 128641, 128640, 8986, 9728, 11088, 127752, 9730, 127880, 127872, 9917, 9824, 9829, 9830, 9827, 128083, 128081, 127913, 128276, 127925, 127908, 127911, 127928, 127930, 129345, 128269, 128367, 128161, 128214, 9993, 128230, 9999, 128188, 128203, 9986, 128273, 128274, 128296, 128295, 9878, 9775, 128681, 128099, 127838 ]`
 
 ```
 Step 1: Concatenate the block hash with the transaction hash
-=> 00000000000000000052a9262724584c5e733f215b35d45d72c41d9c0a1402af0108b5f960855cd41d0a2fc74d4c1ae7f33ad25f884288613ce6e87d788249ec
+=> 000000000000000002abbeff5f6fb22a0b3b5c2685c6ef4ed2d2257ed54e9dcb590d1fdf7e04af0ee08f9194bb9e8d1971bdcbf55d29303d5bf32d4eae5e7136
 
 Step 2: Hash the results of the concatenation with sha256
-=> 168bbea9b56f464935c87d773ad17744dcc687a668aff7b4846dbfcbc
+=> 37f1d9b19e25be4d310f3d4a798091ad38a2fb4a3fb66a82ff1d12e2e29a6230
 
 Step 3: Take the last four bytes and discard the rest
-=> 9de3cc78
+=> e29a6230
 
 Step 4: Convert to decimal notation
-=> 2648951928
+=> 3801768496
 
 Step 5: Modulus by 100.
-=> 28
+=> 96
 
 Step 6: Take the emoji at the given position in the emoji list.
-=> 127794
+=> 9775
 ```
 
 
@@ -206,8 +204,8 @@ A service can be made that continously scans the blockchain to create a database
 
 ```
 {
-    "name": "Alice",
-    "block": 560662
+    "name": "Jonathan",
+    "block": 563720
 }
 ```
 
@@ -215,13 +213,13 @@ The service should reply with a list of matches using the same case folding tran
 
 ```
 {
-    "name": "Alice",
-    "block": 560662,
+    "name": "Jonathan",
+    "block": 563720,
     "results":
     [
         {
-            "transaction": "0100000001243fb2a33149dc9755949870e919c5b07317f9eeb279eff910daaa6a0ce6400d010000006a47304402203678134dff42e170125e97217df08a9eb177be4aa48208f72ad138eb463a995402204a2aef94e894eff7c54a38e3717571d1a5be9957b8e79e3ae9b76a040b815bd7412103466c5a4c9f64754f5023006b29839d1c2a5f2e063f58d5ddc84185a606172dfffeffffff020000000000000000226a040101010105416c6963651501ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4c80d0800000000001976a9141fb7c820560a49d54c2e841ebc0b929639b91f7f88ac158e0800",
-            "inclusion_proof": "0000c0207b65934755a2df17e7348a7e58c149ae5dfbdeb1faa3ea0200000000000000005767d9bcbbf3237b1db097ee7d3dc353722b8524bc03c131bf4455cea941f22ec293125ca030071869405157180200000be9a17b095ec090301730c6f9741f71e9e3fafb8a5c9004b34b0252b93f7cf6ee7705b5f132f690b7012f454afbf5929ef98c929eeeedd37ec0aa7fa07f647b851e1aa419ae5ce0f83e8c1cbf3ebe58865aef8b7afa99f70af4c0aad0418ccf00ec4982787de8e63c618842885fd23af3e71a4c4dc72f0a1dd45c8560f9b508014fd1ef4a33fc2f70dd583c8543635b858ba22b31af752daa3947df9a37e3ed6a0a4e90681594bcd2e7dd07facb5c37959f0aac2763584a0980169e85b760b10f3a510715955b79238b53aa0e3bbdf7a381606c496280d7750cc584bd8bf175ff1fe1cd26f962a8033f867d5cb2bf31a36bdd1bae3637e2fdc222238c7d1705614d6a8c68e12ff6015b17cf293488de51a379070c71321bb2acaa1d603a279e108caf09e663a52efa794149c91856ede90d150bd52add1b3d145e68f84b5e041fac33026e3b27f44eb6ae8907aeea1d4cd470d1198a1c693aea9e7e83273d02bc03ff2a00"
+            "transaction": "590d1fdf7e04af0ee08f9194bb9e8d1971bdcbf55d29303d5bf32d4eae5e7136",
+            "inclusion_proof": "<???>"
         }
     ]
 }
