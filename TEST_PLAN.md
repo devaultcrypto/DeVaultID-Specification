@@ -30,10 +30,10 @@
 
 Account | Validity | Notes
 ---|---|---
-1 | Valid |
-2 | Valid |
-3 | Valid |
-4 | Valid |
+1 | Valid | A common key hash registration
+2 | Valid | A registration that has collisions only if properly case folded
+3 | Valid | A registration with a payment code
+4 | Valid | A registration with multiple payment entries
 5 | Invalid | Registered before protocol activation
 6 | Invalid | Registered with an invalid name
 
