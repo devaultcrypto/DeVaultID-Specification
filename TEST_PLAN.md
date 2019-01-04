@@ -42,7 +42,7 @@ Entry | Blockheight | Transaction ID | Registration HEX
 6 |
 7 | 563722 | 4d340a6c66079566ca7da36915ff712afa49237cf6548ee700afb53fdca4e6f2 | 6a04010101010ad8aed8b1d8acd985d986150112963cac417049f588220801dcbd4247da284018
 8 |
-9 |
+9 | 563696 | de41ddf3af2c27d976d7653f5066d6ff49f680e29b2557e63e0b79691c5847f3 | 6a040101010105416c6963651501892fc119a48c548455d974648efc9df0c387e8e2
 
 #### Account Identity
 
@@ -56,7 +56,7 @@ Entry | Identicon | Account Name | Account Number | Collision Hash
 6 |
 7 | 🐪 | ~~invalid~~ | #102 | .3260954122 
 8 |
-9 |
+9 | 🔔 | Alice | #76 | .8608044352
 
 #### Account Collision
 
@@ -70,7 +70,7 @@ Entry | Collision Count | Shortest Identifier
 6 |
 7 | 0 | ~~invalid~~
 8 |
-9 |
+9 | 0 | Alice#76;
 
 #### Payment Data
 
@@ -84,4 +84,4 @@ Entry | Payment Count | Payment Types | Payment Data
 6 |
 7 | 1 | Key Hash | qqffv09vg9cynavgygyqrh9agfra52zqrqvhuq6etv
 8 |
-9 |
+9 | 1 | Key Hash | qzyjlsge5jx9fpz4m96xfrhunhcv8plgugzqa368r2
