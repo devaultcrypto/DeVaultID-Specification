@@ -4,31 +4,19 @@
 
 ### Data Entries
 
-* 1: `Jonathan#100;`
-* 2: `Timothy#200;`
-* 3: `Monsterbitar#123;`
-* 4: `?#?`
-* 5: `ABC#124.9;`
-* 6: `?#?`
-* 7: `خرجمن#102`
-* 8: `?#?`
-* 9: `Alice#76;`
+Entry | Account | Validity | Notes
+--- | --- | --- | ---
+1 | Jonathan#100; | Valid | Key hash
+2 | Timothy#200; | Valid | Payment code
+3 | Monsterbitar#123; | Valid | Multiple payment entries
+4 |  | Valid | Complete naming collision
+5 | ABC#124.9; | Valid | Naming collision without case folding
+6 |  | Valid | OP_RETURN last in the transaction
+7 | خرجمن#102 | Invalid | Invalid account name
+8 |  | Invalid | Invalid payment data
+9 | Alice#76; | Invalid | Registered before release
 
 ### Test Vectors
-
-#### Account Validity
-
-Account | Validity | Notes
----|---|---
-1 | Valid | Key hash
-2 | Valid | Payment code
-3 | Valid | Multiple payment entries
-4 | Valid | Complete naming collision
-5 | Valid | Naming collision without case folding
-6 | Valid | OP_RETURN last in the transaction
-7 | Invalid | Invalid account name
-8 | Invalid | Invalid payment data
-9 | Invalid | Registered before release
 
 #### Account Transaction
 
