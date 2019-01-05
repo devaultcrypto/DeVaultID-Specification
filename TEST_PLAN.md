@@ -10,7 +10,7 @@ Entry | Account | Validity | Notes
 2 | Timothy#200; | Valid | Payment code
 3 | Monsterbitar#123; | Valid | Multiple payment entries
 4 | bv1#242.03; | Valid | Complete naming collision
-5 | ABC#124.9; | Valid | Naming collision without case folding
+5 | ABC#124.9; | Valid | Naming collision only when case folded
 6 |  | Valid | OP_RETURN last in the transaction
 7 | خرجمن#102 | Invalid | Invalid account name
 8 |  | Invalid | Invalid payment data
