@@ -209,7 +209,10 @@ A service can be made that continuously scans the blockchain to create a databas
 }
 ```
 
-The service should reply with a list of matches using the same case folding transformation as is done for collision detection, including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collisions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
+The JSON returned does explicitly not include the **account number** because that can be calculated with a simple algorithm from the block height that is provided. See [Account Number](#account-number) above.
+The **collision hash** has been omitted as well for similar reasons. In the next example we will show the actual registration transaction being included which can be double hashed to give the transaction-id and from there you can follow the [Collision Hash](#collision-hash) chapter to allow the user to validate this number as well.
+
+The service should reply with a list of matches using the same case-folding transformation as is done for collision detection, including the full Register **Transaction** and **Inclusion Proof** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collisions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
 
 ```
 {
@@ -224,6 +227,8 @@ The service should reply with a list of matches using the same case folding tran
     ]
 }
 ```
+
+The inclusion_proof is an SPV merkle proof, documentation TODO
 
 
 ### Payment Type Preference
