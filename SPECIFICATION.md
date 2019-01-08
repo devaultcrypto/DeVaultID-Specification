@@ -17,14 +17,14 @@ The Bitcoin address system based on hashing data creates complex and difficult t
 
 ## Introduction
 
-When a user wants to, they can create a **Cash Account** by selecting a suitable name and publish a transaction on-chain to aquire an identifier. Once the transaction is included in a block the user is informed of their name and identifier and can now share this information in a convenient manner with others.
+When a user wants to, they can create a **Cash Account** by selecting a suitable name and publish a transaction on-chain to acquire an identifier. Once the transaction is included in a block the user is informed of their name and identifier and can now share this information in a convenient manner with others.
 
 When a user receives a **Cash Account Identifier** their wallet looks up the **Payment Information** that corresponds to the account.
 
 
 ### Cash Account Identifiers
 
-### Complete Idenfitiers
+### Complete Identifiers
 
 A **Complete Identifier** consists of an **Account Name**, a **Account Number** and a **Collision Hash**.
 
@@ -45,9 +45,9 @@ The **Account Name** is chosen by the user at registration time and can be at mo
 
 #### Account Number
 
-The **Account Number** is calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and substracting a **Block Modification Value**.
+The **Account Number** is calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and subtracting a **Block Modification Value**.
 
-The **Block Modification Value** is equal to the **Activation Block Height** minus 100 and was choosen such that new accounts would create **Account Numbers** starting with 100. 
+The **Block Modification Value** is equal to the **Activation Block Height** minus 100 and was chosen such that new accounts would create **Account Numbers** starting with 100. 
 
 Registrations in blocks before the **Activation Block Height** are automatically invalid and must not be used.
 
@@ -111,7 +111,7 @@ Jonathan#100.51;
 
 #### Account Identicons
 
-As an optional feature clients may calculate and show an **Account Identicon** for each **Cash Account** from the following unicode emoji list:
+As an optional feature clients may calculate and show an **Account Identicon** for each **Cash Account** from the following Unicode emoji list:
 
 *If the locally available fonts do not support all emojis, consider using the [Noto Color Emoji](https://www.google.com/get/noto/help/emoji/) font.*
 
@@ -159,7 +159,7 @@ Step 6: Take the emoji at the given position in the emoji list.
 
 ## Protocol 
 
-To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with a single OP_RETURN output in any position, cointaining a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
+To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with a single OP_RETURN output in any position, containing a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
 
 ```
 OP_RETURN (0x6a)
@@ -198,7 +198,7 @@ While it is technically possible for a client to download the referenced block, 
 
 ### Indexing Services
 
-A service can be made that continously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their **Account Names** and **Account Numbers**. An indexing server should thus validate the **Account Name** with the same strict **Regular Expression** (`/[a-zA-Z0-9_]{1,99}/`) as is applied to the registration. To query such a service, the wallet/client should send a request for only the **Account Name** and **Account Number**, even if it is aware of a collision:
+A service can be made that continuously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their **Account Names** and **Account Numbers**. An indexing server should thus validate the **Account Name** with the same strict **Regular Expression** (`/[a-zA-Z0-9_]{1,99}/`) as is applied to the registration. To query such a service, the wallet/client should send a request for only the **Account Name** and **Account Number**, even if it is aware of a collision:
 
 *By always omitting any **Collision Avoidance Parts** the indexing services cannot know which account is being looked for which increases privacy, and while an indexing service can always lie by omission, doing so without knowing which entry is being looked for adds a detection risk.*
 
@@ -209,7 +209,7 @@ A service can be made that continously scans the blockchain to create a database
 }
 ```
 
-The service should reply with a list of matches using the same case folding transformation as is done for collision detection, including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collosions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
+The service should reply with a list of matches using the same case folding transformation as is done for collision detection, including the full **Register Transactions** and **Inclusion Proofs** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collisions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
 
 ```
 {
@@ -228,13 +228,13 @@ The service should reply with a list of matches using the same case folding tran
 
 ### Payment Type Preference
 
-When a sending client looks up a **Cash Account** and finds more than one compatible **Payment Data**, it should make a best-effort choice to maximize the **security** and then **privacy** of the recepient, regardless of which order the **Payment Data** was stored in.
+When a sending client looks up a **Cash Account** and finds more than one compatible **Payment Data**, it should make a best-effort choice to maximize the **security** and then **privacy** of the recipient, regardless of which order the **Payment Data** was stored in.
 
 The reasoning for this is that the data is immutable and software is not, so the senders wallet may be aware of security and privacy issues that the recipient has not yet become aware of.
 
 ### Pre-Confirmation
 
-For new wallet users, waiting for a block confirmation is unreasanable before using their wallet. During the pre-confirmation time period the wallet should either fall back on other means of transferring the payment information, or should digitally share either the full registration transaction or the hash of the transaction so that the other party can look it up in their mempool.
+For new wallet users, waiting for a block confirmation is unreasonable before using their wallet. During the pre-confirmation time period the wallet should either fall back on other means of transferring the payment information, or should digitally share either the full registration transaction or the hash of the transaction so that the other party can look it up in their mempool.
 
 Sharing the hash of the transaction allowed the other party to set up and store the finalized **Cash Account Identifier** in a local registry once it confirms in a block.
 
