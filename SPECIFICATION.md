@@ -47,7 +47,7 @@ The **Account Name** is chosen by the user at registration time and can be at mo
 
 The **Account Number** is calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and subtracting a **Block Modification Value**.
 
-The **Block Modification Value** is equal to the **Activation Block Height** minus 100 and was chosen such that new accounts would create **Account Numbers** starting with 100. 
+The **Block Modification Value** is equal to the **Activation Block Height** minus 100 and was chosen such that new accounts would create **Account Numbers** starting with 100.
 
 Registrations in blocks before the **Activation Block Height** are automatically invalid and must not be used.
 
@@ -116,13 +116,13 @@ As an optional feature clients may calculate and show an **Account Identicon** f
 *If the locally available fonts do not support all emojis, consider using the [Noto Color Emoji](https://www.google.com/get/noto/help/emoji/) font.*
 
  &#128123;&#128018;&#128021;&#128008;&#128014;&#128004;&#128022;&#128016;&#128042;&#128024;  &#128000;&#128007;&#128063;&#129415;&#128019;&#128039;&#129414;&#129417;&#128034;&#128013;
- 
+
  &#128031;&#128025;&#128012;&#129419;&#128029;&#128030;&#128375;&#127803;&#127794;&#127796;  &#127797;&#127809;&#127808;&#127815;&#127817;&#127819;&#127820;&#127822;&#127826;&#127827;
- 
+
  &#129373;&#129381;&#129365;&#127805;&#127798;&#127812;&#129472;&#129370;&#129408;&#127850;  &#127874;&#127853;&#127968;&#128663;&#128690;&#9973;&#9992;&#128641;&#128640;&#8986;
- 
+
  &#9728;&#11088;&#127752;&#9730;&#127880;&#127872;&#9917;&#9824;&#9829;&#9830;  &#9827;&#128083;&#128081;&#127913;&#128276;&#127925;&#127908;&#127911;&#127928;&#127930;
- 
+
  &#129345;&#128269;&#128367;&#128161;&#128214;&#9993;&#128230;&#9999;&#128188;&#128203;  &#9986;&#128273;&#128274;&#128296;&#128295;&#9878;&#9775;&#128681;&#128099;&#127838;
 
 The identicon acts like a checksum which helps prevent against typing mistakes during user entry, but only has a probabilistic benefit in the sense that it is technically possible for a user to mistype their entry into another valid account, which then has a 1% chance of having the same identicon.
@@ -157,7 +157,7 @@ Step 6: Take the emoji at the given position in the emoji list.
 ```
 
 
-## Protocol 
+## Protocol
 
 To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with a single OP_RETURN output in any position, containing a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
 
@@ -187,7 +187,7 @@ Presentation of **Account Names** should always be in the case that they are sto
 --- | --- | --- | ---
 Key Hash | 0x01 | Key Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
 Script Hash | 0x02 | Script Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
-Payment Code | 0x03 | Payment Code (80) | 
+Payment Code | 0x03 | Payment Code (80) |
 Stealth Keys | 0x04 | Spend Key (33) View Key (33) | <reserved for stealth keys, pending a formal specification>
 
 
