@@ -170,7 +170,7 @@ OP_RETURN (0x6a)
 
 ### Protocol Identifier
 
-This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md) and uses the 0x01010101 protocol identifier and has to be pushed with the 0x04 opcode.
+This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/op_return-prefix-guideline.md) and uses the 0x01010101 protocol identifier and has to be pushed with the 0x04 opcode.
 
 ### Account Name
 
@@ -315,4 +315,4 @@ If **Alice** properly verifies that her identifier has the required length for h
 Bitcoin Script | N/A | https://en.bitcoin.it/wiki/Script
 Reusable Payment Codes | BIP-47 | https://github.com/OpenBitcoinPrivacyProject/bips/blob/master/bip-0047.mediawiki
 OP_RETURN | N/A | https://en.bitcoin.it/wiki/OP_RETURN
-OP_RETURN Guidelines | N/A | https://github.com/Lokad/Terab/blob/master/spec/opreturn-prefix-guideline.md
+OP_RETURN Guidelines | N/A | https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/op_return-prefix-guideline.md
