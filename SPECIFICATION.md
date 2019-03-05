@@ -174,7 +174,8 @@ This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/bi
 
 ### Account Name
 
-The **Account Name** is an ASCII encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**. The string must adhere to a strict **Regular Expression** of `/[a-zA-Z0-9_]{1,99}/` to retain the human accessibility trait.
+The **Account Name** is an ASCII encoded string with a character length between 1 and 99, and a byte length small enough to allow for the desired **Payment Data**.
+The string must adhere to a strict **Regular Expression** of `/^[a-zA-Z0-9_]{1,99}$/` to retain the human accessibility trait.
 
 Presentation of **Account Names** should always be in the case that they are stored in while collision checks must always be done in lower case.
 
