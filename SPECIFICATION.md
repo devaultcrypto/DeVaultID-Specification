@@ -308,6 +308,27 @@ To mitigate this attack **Alice** should poll random indexing services after cre
 If **Alice** properly verifies that her identifier has the required length for her **Collision Avoidance Part**, then **Bob** will either fail to look up her **Cash Account**, or will be able to positively prove that her **Payment Data** corresponds to a valid **Registration Transaction**.
 
 
+#### Auto-Complete Impersonation
+
+An address or address-like string can be registered as the name of an account.
+For example [qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst#7084](https://blockchair.com/bitcoin-cash/transaction/8413f8a7c3ae1f7caf5063567a0e3abb049fc78d2c40ff98a045e9dc9b0179e6).
+Wallets with naive auto-complete could find this similar "name" in their database and show it to the user.
+A distracted user could easily select this false name and send money to the wrong address.
+This is mostly mitigated by the fact that users very rarely enter addresses by hand.
+
+An extension of the address auto-complete impersonation attack is more dangerous -
+registering an existing cash account identifier with the address-like string hiding the **account number** and **collision avoidance part**.
+For example `Jonathan100_qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst#9999`.
+This could more realistically trick a user by showing the information that they are looking for when they start to type a name.
+The attacker can additionally grind for the same **identicon** as the real user because the **account number** and **collision avoidance part** will appear after the long address-like string.
+
+Some potential mitigations:
+
+- Help users be wary of long identifiers that may be hiding the **account number** and **collision avoidance part**.
+- Make the **account number** and **collision avoidance part** more prominent - for example by grouping search results by **account number** or having the user input them in separate fields.
+- Look for address-like strings in the identifier and warn users.
+
+
 # References
 
 **Name** | **BIP** | **Link**
