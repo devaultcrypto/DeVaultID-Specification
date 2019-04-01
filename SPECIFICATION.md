@@ -217,7 +217,7 @@ The service should reply with a list of matches using the same case-folding tran
 
 ```
 {
-    "identifier": "Jonathan#100",
+    "name": "Jonathan",
     "block": 563720,
     "results":
     [
