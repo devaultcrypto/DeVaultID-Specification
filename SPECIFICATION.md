@@ -184,12 +184,16 @@ Presentation of **Account Names** should always be in the case that they are sto
 
 **Payment Data** consists of a **Payment Identifier** and **Payment Information**.
 
-**Name** | **Payment Identifier** | **Payment Information** | **Notes**
---- | --- | --- | ---
-Key Hash | 0x01 | Key Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
-Script Hash | 0x02 | Script Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
-Payment Code | 0x03 | Payment Code (80) |
-Stealth Keys | 0x04 | Spend Key (33) View Key (33) | Reusable addresses as specified in [BIP-Stealth](https://raw.githubusercontent.com/genjix/bips/master/bip-stealth.mediawiki)
+**Usage** | **Name** | **Payment Identifier** | **Payment Information** | **Notes**
+--- | --- | --- | --- | ---
+Money | Key Hash | 0x01 | Key Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
+Money | Script Hash | 0x02 | Script Hash (20) | [Address reuse](https://en.bitcoin.it/wiki/Address_reuse) undermines the security and privacy of the users.
+Money | Payment Code | 0x03 | Payment Code (80) |
+Money | Stealth Keys | 0x04 | Spend Key (33) View Key (33) | Reusable addresses as specified in [BIP-Stealth](https://raw.githubusercontent.com/genjix/bips/master/bip-stealth.mediawiki)
+Token | Key Hash | 0x81 | Key Hash (20) | Token aware version of 0x01.
+Token | Script Hash | 0x82 | Script Hash (20) | Token aware version of 0x02.
+Token | Payment Code | 0x83 | Payment Code (80) | Token aware version of 0x03.
+Token | Stealth Keys | 0x84 | Spend Key (33) View Key (33) | Token aware version of 0x04.
 
 
 ## Security and Scalability
