@@ -77,7 +77,7 @@ Step 2: Hash the results of the concatenation with sha256
 Step 3: Take the first four bytes and discard the rest
 => 37f1d9b1
 
-Step 4: Convert to decimal notation and store as a string
+Step 4: Convert to decimal notation according to big endian and store as a string
 => 938596785
 
 Step 5: Reverse the the string so the last number is first
@@ -146,7 +146,7 @@ Step 2: Hash the results of the concatenation with sha256
 Step 3: Take the last four bytes and discard the rest
 => e29a6230
 
-Step 4: Convert to decimal notation
+Step 4: Convert to decimal notation using big endian.
 => 3801768496
 
 Step 5: Modulus by 100.
