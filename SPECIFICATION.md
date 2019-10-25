@@ -5,7 +5,7 @@
 
 # Abstract
 
-DeVault IDs is a naming system that can be used alongside regular bitcoin addresses and payment codes to simplify the process of sharing payment information.
+DeVault IDs is a naming system that can be used alongside regular devault addresses and payment codes to simplify the process of sharing payment information.
 
 
 # Motivation
@@ -316,7 +316,7 @@ If **Alice** properly verifies that her identifier has the required length for h
 #### Auto-Complete Impersonation
 
 An address or address-like string can be registered as the name of an account.
-For example [qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst#7084](https://blockchair.com/bitcoin-cash/transaction/8413f8a7c3ae1f7caf5063567a0e3abb049fc78d2c40ff98a045e9dc9b0179e6).
+For example qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst#7084.
 Wallets with naive auto-complete could find this similar "name" in their database and show it to the user.
 A distracted user could easily select this false name and send money to the wrong address.
 This is mostly mitigated by the fact that users very rarely enter addresses by hand.
