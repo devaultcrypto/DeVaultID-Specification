@@ -5,7 +5,7 @@
 
 # Abstract
 
-Cash Accounts is a naming system that can be used alongside regular bitcoin addresses and payment codes to simplify the process of sharing payment information.
+DeVault IDs is a naming system that can be used alongside regular bitcoin addresses and payment codes to simplify the process of sharing payment information.
 
 
 # Motivation
@@ -17,12 +17,12 @@ The Bitcoin address system based on hashing data creates complex and difficult t
 
 ## Introduction
 
-When a user wants to, they can create a **Cash Account** by selecting a suitable name and publish a transaction on-chain to acquire an identifier. Once the transaction is included in a block the user is informed of their name and identifier and can now share this information in a convenient manner with others.
+When a user wants to, they can create a **DeVault ID** by selecting a suitable name and publish a transaction on-chain to acquire an identifier. Once the transaction is included in a block the user is informed of their name and identifier and can now share this information in a convenient manner with others.
 
-When a user receives a **Cash Account Identifier** their wallet looks up the **Payment Information** that corresponds to the account.
+When a user receives a **DeVault ID Identifier** their wallet looks up the **Payment Information** that corresponds to the account.
 
 
-### Cash Account Identifiers
+### DeVault ID Identifiers
 
 ### Complete Identifiers
 
@@ -111,7 +111,7 @@ Jonathan#100.51;
 
 #### Account Identicons
 
-As an optional feature clients may calculate and show an **Account Identicon** for each **Cash Account** from the following Unicode emoji list:
+As an optional feature clients may calculate and show an **Account Identicon** for each **DeVault ID** from the following Unicode emoji list:
 
 *If the locally available fonts do not support all emojis, consider using the [Noto Color Emoji](https://www.google.com/get/noto/help/emoji/) font.*
 
@@ -159,7 +159,7 @@ Step 6: Take the emoji at the given position in the emoji list.
 
 ## Protocol
 
-To register a **Cash Account** you broadcast a **Bitcoin Cash** transaction with a single OP_RETURN output in any position, containing a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
+To register a **DeVault ID** you broadcast a **DeVault** transaction with a single OP_RETURN output in any position, containing a **Protocol Identifier**, an **Account Name** and one or more **Payment Data**.
 
 ```
 OP_RETURN (0x6a)
@@ -170,7 +170,7 @@ OP_RETURN (0x6a)
 
 ### Protocol Identifier
 
-This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/op_return-prefix-guideline.md) and uses the 0x01010101 protocol identifier and has to be pushed with the 0x04 opcode.
+This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/devaultorg/devault.org/blob/master/spec/op_return-prefix-guideline.md) and uses the 0x01010101 protocol identifier and has to be pushed with the 0x04 opcode.
 
 ### Account Name
 
@@ -203,7 +203,7 @@ While it is technically possible for a client to download the referenced block, 
 
 ### Indexing Services
 
-A service can be made that continuously scans the blockchain to create a database of valid **Cash Accounts**, indexed by their **Account Names** and **Account Numbers**. An indexing server should thus validate the **Account Name** with the same strict **Regular Expression** (`/[a-zA-Z0-9_]{1,99}/`) as is applied to the registration. To query such a service, the wallet/client should send a request for only the **Account Name** and **Account Number**, even if it is aware of a collision:
+A service can be made that continuously scans the blockchain to create a database of valid **DeVault IDs**, indexed by their **Account Names** and **Account Numbers**. An indexing server should thus validate the **Account Name** with the same strict **Regular Expression** (`/[a-zA-Z0-9_]{1,99}/`) as is applied to the registration. To query such a service, the wallet/client should send a request for only the **Account Name** and **Account Number**, even if it is aware of a collision:
 
 *By always omitting any **Collision Avoidance Parts** the indexing services cannot know which account is being looked for which increases privacy, and while an indexing service can always lie by omission, doing so without knowing which entry is being looked for adds a detection risk.*
 
@@ -217,7 +217,7 @@ A service can be made that continuously scans the blockchain to create a databas
 The JSON returned does explicitly not include the **account number** because that can be calculated with a simple algorithm from the block height that is provided. See [Account Number](#account-number) above.
 The **collision hash** has been omitted as well for similar reasons. In the next example we will show the actual registration transaction being included which can be double hashed to give the transaction-id and from there you can follow the [Collision Hash](#collision-hash) chapter to allow the user to validate this number as well.
 
-The service should reply with a list of matches using the same case-folding transformation as is done for collision detection, including the full Register **Transaction** and **Inclusion Proof** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collisions or present a list of the resulting **Cash Accounts** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
+The service should reply with a list of matches using the same case-folding transformation as is done for collision detection, including the full Register **Transaction** and **Inclusion Proof** necessary for an SPV wallet to independently verify data. The client may then locally resolve any naming collisions or present a list of the resulting **DeVault IDs** with as much context information as reasonable, such as **Account Age**, **Collision Avoidance Part** and **Previous Interaction** for this account and let the user choose which to use.
 
 ```
 {
@@ -238,7 +238,7 @@ The inclusion_proof is an SPV merkle proof, documentation TODO
 
 ### Payment Type Preference
 
-When a sending client looks up a **Cash Account** and finds more than one compatible **Payment Data**, it should make a best-effort choice to maximize the **security** and then **privacy** of the recipient, regardless of which order the **Payment Data** was stored in.
+When a sending client looks up a **DeVault ID** and finds more than one compatible **Payment Data**, it should make a best-effort choice to maximize the **security** and then **privacy** of the recipient, regardless of which order the **Payment Data** was stored in.
 
 The reasoning for this is that the data is immutable and software is not, so the senders wallet may be aware of security and privacy issues that the recipient has not yet become aware of.
 
@@ -246,7 +246,7 @@ The reasoning for this is that the data is immutable and software is not, so the
 
 For new wallet users, waiting for a block confirmation is unreasonable before using their wallet. During the pre-confirmation time period the wallet should either fall back on other means of transferring the payment information, or should digitally share either the full registration transaction or the hash of the transaction so that the other party can look it up in their mempool.
 
-Sharing the hash of the transaction allowed the other party to set up and store the finalized **Cash Account Identifier** in a local registry once it confirms in a block.
+Sharing the hash of the transaction allowed the other party to set up and store the finalized **DeVault ID Identifier** in a local registry once it confirms in a block.
 
 
 ### Known Attacks
@@ -310,7 +310,7 @@ When **Alice** and **Bob** uses the same **Indexing Service** there is a risk th
 
 To mitigate this attack **Alice** should poll random indexing services after creation, or download the full block to locally detect any collisions. If any honest service report a collision or there is a locally detect a collision, **Alice** now knows that her chosen indexing service cannot be trusted.
 
-If **Alice** properly verifies that her identifier has the required length for her **Collision Avoidance Part**, then **Bob** will either fail to look up her **Cash Account**, or will be able to positively prove that her **Payment Data** corresponds to a valid **Registration Transaction**.
+If **Alice** properly verifies that her identifier has the required length for her **Collision Avoidance Part**, then **Bob** will either fail to look up her **DeVault ID**, or will be able to positively prove that her **Payment Data** corresponds to a valid **Registration Transaction**.
 
 
 #### Auto-Complete Impersonation
@@ -341,4 +341,4 @@ Some potential mitigations:
 Bitcoin Script | N/A | https://en.bitcoin.it/wiki/Script
 Reusable Payment Codes | BIP-47 | https://github.com/OpenBitcoinPrivacyProject/bips/blob/master/bip-0047.mediawiki
 OP_RETURN | N/A | https://en.bitcoin.it/wiki/OP_RETURN
-OP_RETURN Guidelines | N/A | https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/op_return-prefix-guideline.md
+OP_RETURN Guidelines | N/A | https://github.com/devaultorg/devault.org/blob/master/spec/op_return-prefix-guideline.md

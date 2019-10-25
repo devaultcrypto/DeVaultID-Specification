@@ -3,7 +3,7 @@
     string: Jonathan
     hex:    '4a6f6e617468616e'
   payment_data:
-    address:     bitcoincash:qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst
+    address:     devault:qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst
     type_name:   key hash
     hash160_hex:   'ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4'
     hex:         '01ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4'

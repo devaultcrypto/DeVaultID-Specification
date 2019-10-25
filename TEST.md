@@ -1,4 +1,4 @@
-# Cash Account test vectors and sample code
+# DeVault ID test vectors and sample code
 
 All sample code can be copy-pasted into a python3 REPL.
 
@@ -18,7 +18,7 @@ account_name:
   string: Jonathan
   hex:    '4a6f6e617468616e'
 payment_data:
-  address:     bitcoincash:qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst
+  address:     devault:qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst
   type_name:   key hash
   hash160_hex:   'ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4'
   hex:         '01ebdeb6430f3d16a9c6758d6c0d7a400c8e6bbee4'
@@ -89,8 +89,8 @@ Sample code: create `keyhash_payment_data_bytes` for OP_RETURN registration.
 ```python
 import cashaddress
 
-keyhash = cashaddress.convert.Address.from_string('bitcoincash:qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst')
-assert keyhash.prefix == 'bitcoincash'  # is on the Bitcoin Cash network
+keyhash = cashaddress.convert.Address.from_string('devault:qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst')
+assert keyhash.prefix == 'devault'  # is on the DeVault network
 assert keyhash.version in ['P2PKH', 'P2PKH-TESTNET']  # is p2pkh
 
 KEYHASH_TYPE = bytes.fromhex('01')
@@ -106,8 +106,8 @@ Sample code: create `scripthash_payment_data_bytes` for OP_RETURN registration.
 ```python
 import cashaddress
 
-scripthash = cashaddress.convert.Address.from_string('bitcoincash:pp4d24pemra2k3mths8cjxpuu6yl3a5ctvcp8mdkm9')
-assert scripthash.prefix  in ['bitcoincash', 'bchtest']  # is on a Bitcoin Cash network
+scripthash = cashaddress.convert.Address.from_string('devault:pp4d24pemra2k3mths8cjxpuu6yl3a5ctvcp8mdkm9')
+assert scripthash.prefix  in ['devault', 'dvtest']  # is on a DeVault network
 assert scripthash.version in ['P2SH', 'P2SH-TESTNET']    # is p2sh
 
 SCRIPTHASH_TYPE = bytes.fromhex('02')
