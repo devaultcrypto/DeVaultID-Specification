@@ -1,6 +1,6 @@
 * Status: Released, version 1.0
-* Activation blockheight: 563720
-* Block Modification Value: 563620
+* Activation blockheight: 84001
+* Block Modification Value: 84000
 
 
 # Abstract
@@ -29,13 +29,13 @@ When a user receives a **DeVault ID Identifier** their wallet looks up the **Pay
 A **Complete Identifier** consists of an **Account Name**, a **Account Number** and a **Collision Hash**.
 
 ```
-Jonathan#100.5876958390;
+Jonathan#1.5876958390;
 ```
 
 **Part** | **Example** | **Description**
 --- | --- | ---
 Account Name | Jonathan | Human readable account name
-Account Number | #100 | Number separating accounts with the same name in different blocks.
+Account Number | #1 | Number separating accounts with the same name in different blocks.
 Collision Hash | .5876958390 | Number separating accounts with the same name in the same block.
 
 #### Account Name
@@ -47,18 +47,9 @@ The **Account Name** is chosen by the user at registration time and can be at mo
 
 The **Account Number** is calculated by taking the **Block Height** of the block that mined the **Registration Transaction** and subtracting a **Block Modification Value**.
 
-The **Block Modification Value** is equal to the **Activation Block Height** minus 100 and was chosen such that new accounts would create **Account Numbers** starting with 100.
+The **Block Modification Value** is equal to the **Activation Block Height** minus 1 and was chosen such that new accounts would create **Account Numbers** starting with 1.
 
 Registrations in blocks before the **Activation Block Height** are automatically invalid and must not be used.
-
-Digits | Range | Expected availability
---- | --- | ---
-3 | 100~999 | ~7 days
-4 | 1000~9999 | ~2 months
-5 | 10000~99999 | ~2 years
-6 | 100000~999999 | ~19 years
-7 | 1000000~9999999 | ~190 years
-
 
 #### Collision Hash
 
@@ -93,7 +84,7 @@ Step 6: Right pad the string with zeroes up to a string length of 10.
 Most of the time it is expected that **Account Names** are uniquely registered in their block heights. This allows the shortest identifier to consist of only the **Account Name** and **Account Number** to form a simple human-accessible **Minimal Identifier**.
 
 ```
-Jonathan#100;
+Jonathan#1;
 ```
 
 #### Short Identifiers
@@ -101,8 +92,8 @@ Jonathan#100;
 It is possible that two or more users register the same name in the same block. To uniquely identify such accounts we need to extend the **Minimal Identifier** with a **Collision Avoidance Part** consisting of as many of the initial digits of the **Collision Hash** as required to resolve the naming collision, creating a **Short Identifier**.
 
 ```
-Jonathan#100.56;
-Jonathan#100.51;
+Jonathan#1.56;
+Jonathan#1.51;
 ```
 
 * *Wallets should ideally poll an indexing server or lookup names in their local mempool to avoid naming collisions when possible*
@@ -149,7 +140,7 @@ Step 3: Take the last four bytes and discard the rest
 Step 4: Convert to decimal notation using big endian.
 => 3801768496
 
-Step 5: Modulus by 100.
+Step 5: Modulus by 1.
 => 96
 
 Step 6: Take the emoji at the given position in the emoji list.
@@ -170,7 +161,7 @@ OP_RETURN (0x6a)
 
 ### Protocol Identifier
 
-This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/devaultorg/devault.org/blob/master/spec/op_return-prefix-guideline.md) and uses the 0x01010101 protocol identifier and has to be pushed with the 0x04 opcode.
+This protocol adheres to the [OP_RETURN Prefix Guidelines](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/op_return-prefix-guideline.md) and uses the 0x01010101 protocol identifier and has to be pushed with the 0x04 opcode.
 
 ### Account Name
 
@@ -259,19 +250,19 @@ One attack objective would be to disrupt usability by increasing the length of t
 
 ```
 Original registration (after confirmation in a block)
-Alice#100.1234567890
+Alice#1.1234567890
 
 Disruptive registrations : Required Short ID for original registration
 Alice#100.__________     : Alice#100.1    (No same prefix digits ==> 1 digit Short ID)
-Alice#100.1_________     : Alice#100.12   (Same 1 prefix digit   ==> 2 digit Short ID)
-Alice#100.12________     : Alice#100.123  (Same 2 prefix digits  ==> 3 digit Short ID)
-Alice#100.123_______     : Alice#100.1234 (Same 3 prefix digits  ==> 4 digit Short ID)
+Alice#1.1_________     : Alice#1.12   (Same 1 prefix digit   ==> 2 digit Short ID)
+Alice#1.12________     : Alice#1.123  (Same 2 prefix digits  ==> 3 digit Short ID)
+Alice#1.123_______     : Alice#1.1234 (Same 3 prefix digits  ==> 4 digit Short ID)
 ...
 ```
 
 However, because the **Collision Hash** depends on the block hash, the attacker cannot predict it and must submit many attack registrations to expect matching prefix digits.
 
-Given 1 original registration, on average the attacker can force `d` digits of the **Collision Avoidance Part** with 10<sup>(`d`-1)</sup> attack registrations. That is, exactly 1 transaction is required to force `d = 1`, and then on average 10 transactions are required to force `d = 2`, 100 for `d = 3`, etc. The cost for the attack scales directly with the number of attack registrations.
+Given 1 original registration, on average the attacker can force `d` digits of the **Collision Avoidance Part** with 10<sup>(`d`-1)</sup> attack registrations. That is, exactly 1 transaction is required to force `d = 1`, and then on average 10 transactions are required to force `d = 2`, 1 for `d = 3`, etc. The cost for the attack scales directly with the number of attack registrations.
 
 ```
 attack_transactions = 10^(d-1)
